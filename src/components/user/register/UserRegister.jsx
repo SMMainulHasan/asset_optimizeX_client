@@ -22,7 +22,7 @@ const handleSubmit = (e)=> {
           if(res.data){
             console.log(res.data)
             storeToken(res.data.token)
-            navigate('/user/login')
+            navigate('/app/dashboard')
           }
     })
     .catch((err)=> { setServerError(err.response.data.errors)})

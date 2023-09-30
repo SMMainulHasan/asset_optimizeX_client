@@ -7,8 +7,10 @@ const UserRegister = () => {
 
 const [userData, setUserData] = useState({});
 const [serverError, setServerError] = useState({})
+const [serverMsg, setServerMsg] = useState({})
+const [badRequestError, setBadRequestError] = useState("")
 const navigate = useNavigate();
-const params = useParams();
+const { uid, user_matching_query} = useParams();
 
 const handleData = (e)=>{
     setUserData({...userData, [e.target.name]:e.target.value})
@@ -17,16 +19,28 @@ const handleData = (e)=>{
 const handleSubmit = (e)=> {
     e.preventDefault();
     
-    axios.post(`http://127.0.0.1:8000/api/user/reset-password/${params.user_matching_query}`, userData)
+    axios.post(`http://127.0.0.1:8000/api/user/reset-password/${uid}/${user_matching_query}/`, userData)
     .then((res)=> {
-        console.log(res)
+        // console.log(res)
           if(res.data){
-            console.log(res.data)
+            setServerMsg(res.data)
+            console.log(serverMsg)
             // storeToken(res.data.token)
+            setTimeout(() => {
+                // navigate('/user/login')
+            }, 3000);
             navigate('/user/login')
           }
     })
-    .catch((err)=> { setServerError(err.response.data.errors)})
+    .catch((err)=> { console.log(err)
+        if(err.code == "ERR_BAD_RESPONSE"){
+            setBadRequestError("Faild to reset your password")
+            setServerError({})
+          }
+        else{
+            setServerError(err.response.data.errors)
+        }
+        })
 }
 
   return (
@@ -48,9 +62,10 @@ const handleSubmit = (e)=> {
                         className="w-full input input-bordered" />
                     { serverError.password2 ? <small className="text-red-600">{serverError.password2[0]}</small>:"" }
                     { serverError.non_field_errors ? <small className="text-red-600">{serverError.non_field_errors[0]}</small>:"" }
+                    { badRequestError ? <small className="text-red-600">{badRequestError}</small>:"" }
                 </div>
                 <div>
-                    <button onClick={handleSubmit} className="btn btn-block">Register</button>
+                    <button onClick={handleSubmit} className="btn btn-block">Reset Password</button>
                 </div>
             </form>
         </div>

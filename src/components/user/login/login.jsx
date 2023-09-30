@@ -45,7 +45,7 @@ const UserLogin = () => {
                   { serverError.password ? <small className="text-red-600">{serverError.password[0]}</small>:"" }
                     { serverError.non_field_errors ? <small className="text-red-600">{serverError.non_field_errors[0]}</small>:"" }
                     <br/>
-                    <a href="/user/reset-password" className="text-xs text-gray-600 hover:underline hover:text-blue-600">Forget Password?</a>
+                    <a href="/user/forgot-pass" className="text-xs text-gray-600 hover:underline hover:text-blue-600">Forget Password?</a>
                   <div>
                       <button onClick={handleSubmit} className="btn btn-block">Login</button>
                   </div>

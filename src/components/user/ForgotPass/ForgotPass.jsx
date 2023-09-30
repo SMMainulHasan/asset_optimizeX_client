@@ -1,14 +1,13 @@
 
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate, useParams } from 'react-router-dom';
 
-const UserRegister = () => {
+const ForgotPass = () => {
 
 const [userData, setUserData] = useState({});
 const [serverError, setServerError] = useState({})
-const navigate = useNavigate();
-const params = useParams();
+const [serverMsg, setServerMsg] = useState("")
+const [badRequestError, setBadRequestError] = useState("")
 
 const handleData = (e)=>{
     setUserData({...userData, [e.target.name]:e.target.value})
@@ -17,16 +16,22 @@ const handleData = (e)=>{
 const handleSubmit = (e)=> {
     e.preventDefault();
     
-    axios.post(`http://127.0.0.1:8000/api/user/reset-password/${params.user_matching_query}`, userData)
+    axios.post(`http://127.0.0.1:8000/api/user/send-reset-password-email/`, userData)
     .then((res)=> {
         console.log(res)
           if(res.data){
-            console.log(res.data)
-            // storeToken(res.data.token)
-            navigate('/user/login')
+            setServerMsg(res.data.msg)
           }
     })
-    .catch((err)=> { setServerError(err.response.data.errors)})
+    .catch((err)=> { 
+      console.log(err)
+      if(err.code == "ERR_BAD_RESPONSE"){
+        setBadRequestError("This email don't have an account")
+      }
+      else{
+        setServerError(err.response.data.errors)}
+      }
+      )
 }
 
   return (
@@ -40,9 +45,14 @@ const handleSubmit = (e)=> {
                       <input name="email" type="text" onChange={handleData} placeholder="Email Address" className="w-full input input-bordered" />
                       { serverError.email ? <small className="text-red-600">{serverError.email[0]}</small>:"" }
                       { serverError.non_field_errors ? <small className="text-red-600">{serverError.non_field_errors[0]}</small>:"" }
+                      { badRequestError ? <small className="text-red-600">{badRequestError}</small>:"" }
+
                 </div>
                 <div>
-                    <button onClick={handleSubmit} className="btn btn-block">Register</button>
+                  { serverMsg ? <p className="text-green-600">{serverMsg}</p>:"" }
+                </div>
+                <div>
+                    <button onClick={handleSubmit} className="btn btn-block">Forgot Pass</button>
                 </div>
             </form>
         </div>
@@ -50,4 +60,4 @@ const handleSubmit = (e)=> {
   )
 }
 
-export default UserRegister
+export default ForgotPass;
