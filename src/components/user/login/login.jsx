@@ -27,7 +27,7 @@ const UserLogin = () => {
     }
     return (
       <div className="relative flex flex-col items-center justify-center h-screen overflow-hidden">
-          <div className="w-full p-6 bg-white border-t-4 border-gray-600 rounded-md shadow-md border-top lg:max-w-lg">
+          <div className="w-full p-6 bg-white border-t-4 border-blue-600 rounded-md shadow-lg border-top lg:max-w-lg">
               <h1 className="text-3xl font-semibold text-center text-gray-700">Asset OptimizeX</h1>
               
               <form className="space-y-4">
@@ -43,11 +43,14 @@ const UserLogin = () => {
                   </div>
                   
                   { serverError.password ? <small className="text-red-600">{serverError.password[0]}</small>:"" }
-                    { serverError.non_field_errors ? <small className="text-red-600">{serverError.non_field_errors[0]}</small>:"" }
+                    { serverError.non_field_errors ? <div className="alert alert-error">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span>{serverError.non_field_errors[0]}.</span>
+                    </div>:"" }
                     <br/>
                     <a href="/user/forgot-pass" className="text-xs text-gray-600 hover:underline hover:text-blue-600">Forget Password?</a>
                   <div>
-                      <button onClick={handleSubmit} className="btn btn-block">Login</button>
+                      <button onClick={handleSubmit} className="btn btn-block btn-primary">Login</button>
                   </div>
               </form>
           </div>

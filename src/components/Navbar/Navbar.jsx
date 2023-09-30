@@ -67,7 +67,7 @@ const Navbar = () => {
             })}
           </ul>
         </div>
-        <Link className="btn btn-ghost normal-case text-xl" to='/'>Asset OptimizeX</Link>
+        <Link className="btn btn-ghost normal-case text-xl" to='/home'>Asset OptimizeX</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 z-10">
