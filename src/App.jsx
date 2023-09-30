@@ -1,15 +1,27 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 // import './App.css';
+import axios from "axios";
 import Home from "./components/Home/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import ForgotPass from "./components/user/ForgotPass/ForgotPass";
 import ForgotResetPass from "./components/user/ForgotResetPass/ForgotResetPass";
 import UserLogin from "./components/user/login/login";
 import UserRegister from "./components/user/register/UserRegister";
+import { getToken } from "./services/localStorageService";
 
 function App() {
   
+const {access_token} = getToken();
+console.log(access_token)
+axios.defaults.baseURL="http://127.0.0.1:8000/"
+if(access_token !== null){
+   axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`
+}
 
+// axios.get("/api/user/profile/")
+// .then((res) => {
+//   console.log(res)
+// })
   return (
     <>
       <Navbar/>

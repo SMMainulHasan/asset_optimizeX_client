@@ -15,7 +15,7 @@ const UserLogin = () => {
     
     const handleSubmit = (e)=> {
         e.preventDefault();
-        axios.post("http://127.0.0.1:8000/api/user/login/", userData)
+        axios.post("/api/user/login/", userData)
         .then((res)=> {
               if(res.data){
                 console.log(res.data)

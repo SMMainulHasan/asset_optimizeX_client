@@ -19,7 +19,7 @@ const handleData = (e)=>{
 const handleSubmit = (e)=> {
     e.preventDefault();
     
-    axios.post(`http://127.0.0.1:8000/api/user/reset-password/${uid}/${user_matching_query}/`, userData)
+    axios.post(`/api/user/reset-password/${uid}/${user_matching_query}/`, userData)
     .then((res)=> {
         // console.log(res)
           if(res.data){

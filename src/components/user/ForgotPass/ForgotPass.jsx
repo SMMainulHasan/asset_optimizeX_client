@@ -16,7 +16,7 @@ const handleData = (e)=>{
 const handleSubmit = (e)=> {
     e.preventDefault();
     
-    axios.post(`http://127.0.0.1:8000/api/user/send-reset-password-email/`, userData)
+    axios.post(`/api/user/send-reset-password-email/`, userData)
     .then((res)=> {
         console.log(res)
           if(res.data){
