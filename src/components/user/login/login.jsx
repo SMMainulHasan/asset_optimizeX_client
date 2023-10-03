@@ -20,7 +20,7 @@ const UserLogin = () => {
               if(res.data){
                 console.log(res.data)
                 storeToken(res.data.token)
-                navigate('/app/dashboard')
+                navigate('/app')
               }
         })
         .catch((err)=> { setServerError(err.response.data.errors)})
