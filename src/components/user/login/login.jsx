@@ -18,7 +18,6 @@ const UserLogin = () => {
         axios.post("/api/user/login/", userData)
         .then((res)=> {
               if(res.data){
-                console.log(res.data)
                 storeToken(res.data.token)
                 navigate('/app')
               }

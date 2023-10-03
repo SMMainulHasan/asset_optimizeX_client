@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
+import { getToken, removeToken } from "../../services/localStorageService";
 import { navbarMenu } from "./navbarItems";
 
 const Navbar = () => {
+const {access_token} =getToken();
+
+const logout=()=> {
+  removeToken();
+}
+
   return (
     <div className="navbar bg-base-100 py-3">
       <div className="navbar-start">
@@ -95,8 +102,15 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end gap-x-3 pr-5">
-        <Link className="btn btn-outline" to="/user/login">Your Assets</Link>
-        <Link className="btn btn-primary" to="/user/register">Get Started</Link>
+        {
+          access_token ? <a className="btn btn-outline" href="/app">Your Assets</a>
+          : <a className="btn btn-outline" href="/user/login">Log In</a>
+        }
+        {
+          access_token ? <a onClick={logout} className="btn btn-primary" href="/home">Log Out</a>
+          : <a  className="btn btn-primary" href="/user/register">Get Started</a>
+        }
+        
       </div>
     </div>
   );

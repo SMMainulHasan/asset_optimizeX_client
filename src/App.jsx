@@ -6,6 +6,7 @@ import CreateOrg from "./components/Protected/CreateOrg";
 import DashboardLayout from "./components/Protected/DashboardLayout";
 import ProfileDetail from "./components/Protected/ProfileDetail";
 import PrivateOutlet from "./components/container/PrivateOutlet";
+import TopNavAndFooterOutlet from "./components/container/TopNavAndFooterOutlet";
 import ForgotPass from "./components/user/ForgotPass/ForgotPass";
 import ForgotResetPass from "./components/user/ForgotResetPass/ForgotResetPass";
 import UserLogin from "./components/user/login/login";
@@ -15,7 +16,6 @@ import { getToken } from "./services/localStorageService";
 function App() {
   
 const {access_token} = getToken();
-console.log(access_token)
 axios.defaults.baseURL="http://127.0.0.1:8000/"
 if(access_token !== null){
    axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`
@@ -23,14 +23,24 @@ if(access_token !== null){
 
   return (
     <>
-      {/* { !access_token && <Navbar/>} */}
       <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
+
+        <Route path="/*" element={<TopNavAndFooterOutlet />}>
+          <Route path="" element={<Navigate to="/home" />} />
+          <Route path="home" element={<Home />}/>
+          <Route path="user/login" element={<UserLogin />}/>
+          <Route path="user/register" element={<UserRegister/>}/>
+          <Route path="user/forgot-pass" element={<ForgotPass/>}/>
+          <Route path="api/user/reset/:uid/:user_matching_query" element={<ForgotResetPass/>}/>
+        </Route>
+
+
+        {/* <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />}/>
         <Route path="/user/login" element={<UserLogin />}/>
         <Route path="/user/register" element={<UserRegister/>}/>
         <Route path="/user/forgot-pass" element={<ForgotPass/>}/>
-        <Route path="/api/user/reset/:uid/:user_matching_query" element={<ForgotResetPass/>}/>
+        <Route path="/api/user/reset/:uid/:user_matching_query" element={<ForgotResetPass/>}/> */}
         <Route path="/*" element={<PrivateOutlet />}>
           <Route path="app" element={<DashboardLayout title="Dashboard" />}>
             <Route path="Profile" element={<ProfileDetail/> }/>
