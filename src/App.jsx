@@ -7,6 +7,7 @@ import OrganizationEmailVerify from "./components/Organization/OrganizationEmail
 import CreateLibrary from "./components/Protected/CreateLibrary";
 import DashboardLayout from "./components/Protected/DashboardLayout";
 import AddFile from "./components/Protected/Library/AddFile";
+import LibraryAssetContainer from "./components/Protected/Library/LibraryAssetContainer";
 import LibraryLayout from "./components/Protected/Library/LibraryLayout";
 import ProfileDetail from "./components/Protected/ProfileDetail";
 import PrivateOutlet from "./components/container/PrivateOutlet";
@@ -48,6 +49,7 @@ if(access_token !== null){
             <Route path="create-org" element={<CreateOrganization/> }/>
             <Route path=":organization_id/create-library" element={<CreateLibrary/> }/>
             <Route path=":library_id" element={<LibraryLayout/> }>
+              <Route path="" element={<LibraryAssetContainer/> }/>
               <Route path="add-file" element={<AddFile/> }/>
             </Route>
           </Route>
