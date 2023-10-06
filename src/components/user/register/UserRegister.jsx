@@ -22,14 +22,14 @@ const handleSubmit = (e)=> {
           if(res.data){
             console.log(res.data)
             storeToken(res.data.token)
-            navigate('/app/dashboard')
+            navigate('/app')
           }
     })
     .catch((err)=> { setServerError(err.response.data.errors)})
 }
 
   return (
-    <div className="relative flex flex-col items-center justify-center h-screen overflow-hidden m-5 mb-5
+    <div className="relative flex flex-col items-center justify-center m-5 mb-5
     ">
         <div className="w-full p-6 bg-white border-t-4 border-blue-600 rounded-md shadow-lg border-top lg:max-w-lg">
             <h1 className="text-3xl font-semibold text-center text-gray-700">Asset OptimizeX</h1>

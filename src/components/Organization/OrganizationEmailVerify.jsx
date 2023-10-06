@@ -1,9 +1,45 @@
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-const VerifyEmail = () => {
+const OrganizationEmailVerify = () => {
+
+    const [serverError, setServerError] = useState({})
+    const [serverMsg, setServerMsg] = useState({})
+    // const [badRequestError, setBadRequestError] = useState("")
+    const navigate = useNavigate();
+    const { uid, user_matching_query,hash} = useParams();
+
+
+    const handleSubmit = ()=> {
+        
+        axios.post(`/api/organization/register/${uid}/${user_matching_query}/${hash}/`)
+        .then((res)=> {
+            // console.log(res)
+            if(res.data){
+                setServerMsg(res.data)
+                console.log(serverMsg)
+                setTimeout(() => {
+                    navigate('/app')
+                }, 3000);
+                
+            }
+        })
+        .catch((err)=> { console.log(err)
+            if(err.code == "ERR_BAD_RESPONSE"){
+                // setBadRequestError("Faild to verify your email")
+                setServerError({})
+            }
+            else{
+                setServerError(err.response.data.errors)
+            }
+        })
+    }
+
   return (
     <div className="flex items-center justify-center min-h-screen p-5 bg-gray-600 min-w-screen">
             <div className="max-w-xl p-8 text-center text-gray-800 bg-white shadow-xl lg:max-w-3xl rounded-3xl lg:p-12">
-                <h3 className="text-2xl">Thanks for signing up for larainfo.com!</h3>
+                <h3 className="text-2xl">Thanks for choose Asset OptimizeX!</h3>
                 <div className="flex justify-center">
                     <svg className="w-32 h-32" viewBox="0 0 50 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -25,19 +61,27 @@ const VerifyEmail = () => {
                     </svg>
                 </div>
                 <p>We&apos;re happy you&apos;re here. Let&apos;s get your email address verified:</p>
+                
+                    { serverError.non_field_errors ? 
+                        <div className="alert alert-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>{serverError.non_field_errors[0]}.</span>
+                        </div>
+                        :"" 
+                    }
+                    { serverMsg.msg ? 
+                        <div className="alert alert-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>{serverMsg.msg}.</span>
+                        </div>
+                        :"" 
+                    }
                 <div className="mt-4">
-                    <button className="px-2 py-2 text-blue-200 bg-blue-600 rounded">Click to Verify Email</button>
-                    <p className="mt-4 text-sm">If you&apos;re having trouble clicking the &quot;Verify Email Address&quot; button, copy
-                        and
-                        paste
-                        the URL below
-                        into your web browser:
-                        <a href="" className="text-blue-600">http://localhost:8000/email/verify/3/1ab7a09a3</a>
-                    </p>
+                    <button onClick={handleSubmit} className="btn btn-block btn-primary">Click to Verify Email</button>
                 </div>
             </div>
         </div>
   )
 }
 
-export default VerifyEmail
+export default OrganizationEmailVerify

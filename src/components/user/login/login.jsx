@@ -4,11 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { storeToken } from "../../../services/localStorageService";
 
 const UserLogin = () => {
-
     const [userData, setUserData] = useState({});
     const [serverError, setServerError] = useState({})
     const navigate = useNavigate();
-    
+
     const handleData = (e)=>{
         setUserData({...userData, [e.target.name]:e.target.value})
     }
@@ -25,7 +24,7 @@ const UserLogin = () => {
         .catch((err)=> { setServerError(err.response.data.errors)})
     }
     return (
-      <div className="relative flex flex-col items-center justify-center h-screen overflow-hidden">
+      <div className="relative flex flex-col items-center justify-center">
           <div className="w-full p-6 bg-white border-t-4 border-blue-600 rounded-md shadow-lg border-top lg:max-w-lg">
               <h1 className="text-3xl font-semibold text-center text-gray-700">Asset OptimizeX</h1>
               

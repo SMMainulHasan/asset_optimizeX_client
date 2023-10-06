@@ -5,7 +5,7 @@ const DashboardLayout = () => {
   return (
     <div className="">
     <div >
-      <DashNavBar/>
+      <DashNavBar />
       <Dashboard/>
     </div>
   </div>
