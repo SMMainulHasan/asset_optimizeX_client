@@ -65,7 +65,7 @@ const CreateOrganization = () => {
                     </div>
                     <div>
                         <label className="label">
-                            <span className="text-base label-text">Phone Number</span>
+                            <span className="text-base label-text">Accept terms & condition</span>
                         </label>
                         <input type="radio" onChange={handleData} name="tc" value="True" className="radio" />
                         { serverError.tc ? <small className="text-red-600">{serverError.tc[0]}</small>:"" }

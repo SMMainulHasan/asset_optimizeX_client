@@ -7,6 +7,7 @@ import OrganizationEmailVerify from "./components/Organization/OrganizationEmail
 import CreateLibrary from "./components/Protected/CreateLibrary";
 import DashboardLayout from "./components/Protected/DashboardLayout";
 import AddFile from "./components/Protected/Library/AddFile";
+import AssetDetails from "./components/Protected/Library/AssetDetails";
 import LibraryAssetContainer from "./components/Protected/Library/LibraryAssetContainer";
 import LibraryLayout from "./components/Protected/Library/LibraryLayout";
 import ProfileDetail from "./components/Protected/ProfileDetail";
@@ -21,7 +22,7 @@ import { getToken } from "./services/localStorageService";
 function App() {
   
 const {access_token} = getToken();
-axios.defaults.baseURL=import.meta.env.VITE_BASE_URL;
+axios.defaults.baseURL="https://asset.pythonanywhere.com/";
 if(access_token !== null){
    axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`
 }
@@ -51,6 +52,7 @@ if(access_token !== null){
             <Route path=":library_id" element={<LibraryLayout/> }>
               <Route path="" element={<LibraryAssetContainer/> }/>
               <Route path="add-file" element={<AddFile/> }/>
+              <Route path="asset-details/:assetId" element={<AssetDetails/> }/>
             </Route>
           </Route>
         </Route>
