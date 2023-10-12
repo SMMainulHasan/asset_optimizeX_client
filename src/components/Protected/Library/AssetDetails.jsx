@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaDownload } from "react-icons/fa";
+import { MdDelete } from 'react-icons/md';
 import { RiShareFill } from "react-icons/ri";
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -36,23 +37,28 @@ const AssetDetails = () => {
         const formData = new FormData();
         formData.append('title', asset.title);
         formData.append('library', asset.library);
-        formData.append('asset', assetFile);
+        assetFile && formData.append('asset', assetFile);
         formData.append('location', asset.location);
 
-        axios.patch(`/api/assets/${assetId}/update/`, formData, {
-            headers: {
-            'Content-Type': 'multipart/form-data',
-            },
-        })
+        axios.patch(`/api/assets/${assetId}/update/`, formData)
         .then((res)=> {
             if(res.data){
-                console.log(res.data)
                 navigate(`/app/${library_id}/`)
             }
         })
         .catch((err)=> { setServerError(err.response.data)})
     }
 
+    //Delete asset
+    const deleteAsset = ()=> {
+        axios.delete(`/api/assets/${assetId}/delete/`)
+        .then((res)=> {
+            if(res.status){
+                navigate(`/app/${library_id}/`)
+            }
+        })
+        .catch((err)=> { setServerError(err.response.data)})
+    }
 
   return (
     <div className="relative w-full flex flex-col items-center justify-center mt-5">
@@ -64,7 +70,7 @@ const AssetDetails = () => {
                     <div className="bg-gray-900 p-3 rounded-3xl bg-opacity-60 absolute text-2xl text-gray-100 top-5 right-5 flex">
                         <RiShareFill className="mx-3"/>
                         <FaDownload className="mx-3"/>
-                        <RiShareFill className="mx-3"/>
+                        <button onClick={deleteAsset} className="btn btn-outline btn-error btn-xs"><MdDelete className="text-2xl"/></button>
                     </div>
                 </div>
             </div>
@@ -80,8 +86,9 @@ const AssetDetails = () => {
                             { serverError.title ? <small className="text-red-600">{serverError.title[0]}</small>:"" }
                         </div>
                         <div>
-                            <p className="text-gray-500">Created: 24 july,2000</p>
-                            <p className="text-gray-500">Last Updated: 24 july,2000</p>
+                            {/* TODO: change the get api to get created_at and updated_at to show it on here */}
+                            {/* <p className="text-gray-500">Created: {asset.created_at}</p>
+                            <p className="text-gray-500">Last Updated: {asset.updated_at}</p> */}
                         </div>
                         <div>
                             <label className="label"><span className="text-base label-text">Upload Updated file</span></label>

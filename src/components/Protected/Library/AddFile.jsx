@@ -7,7 +7,7 @@ const AddFile = () => {
 
 const {library_id} = useParams()
 const [assetData, setAssetData] = useState({library:library_id});
-const [asset, setAsset] = useState();
+const [assets, setAssets] = useState([]);
 const [serverError, setServerError] = useState({})
 const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ const handleData = (e)=>{
     setAssetData({...assetData, [e.target.name]:e.target.value})
 }
 const handleAsset = (e)=>{
-    setAsset(e.target.files[0])
+    setAssets(e.target.files)
 }
 
 const handleSubmit = (e)=> {
@@ -24,14 +24,13 @@ const handleSubmit = (e)=> {
     const formData = new FormData();
     formData.append('title', assetData.title);
     formData.append('library', assetData.library);
-    formData.append('asset', asset);
     formData.append('location', assetData.location);
 
-    axios.post("/api/assets/", formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
+    for (const asset of assets) {
+        formData.append('asset', asset);
+      }
+
+    axios.post("/api/assets/", formData)
     .then((res)=> {
           if(res.data){
             console.log(res.data)
@@ -53,7 +52,7 @@ const handleSubmit = (e)=> {
                     { serverError.title ? <small className="text-red-600">{serverError.title[0]}</small>:"" }
                 </div>
                 <div>
-                    <input name="asset" onChange={handleAsset} type="file" className="file-input file-input-bordered file-input-primary w-full max-w-xs" />
+                    <input name="asset" multiple onChange={handleAsset} type="file" className="file-input file-input-bordered file-input-primary w-full max-w-xs" />
     
                     { serverError.asset ? <small className="text-red-600">{serverError.asset[0]}</small>:"" }
                 </div>

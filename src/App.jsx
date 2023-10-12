@@ -57,7 +57,6 @@ if(access_token !== null){
             </Route>
           </Route>
         </Route>
-        {/* <Route path="*" element={<Navigate to={access_token ? "/app/dashboard" : "/user/login"} replace />}/> */}
       </Routes>
     </>
   )
