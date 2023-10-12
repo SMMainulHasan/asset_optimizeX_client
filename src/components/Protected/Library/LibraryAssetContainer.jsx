@@ -14,16 +14,16 @@ const LibraryAssetContainer = () => {
   },[library_id])
 
   return (
-    <div className='grid grid-flow-col gap-1 w-96'>
+    // <div className='grid grid-flow-col gap-1 w-full'>
+    <div className='flex flex-wrap'>
       {
         assets.map((asset)=>(
-          <Link key={asset.id} to={`asset-details/${asset.id}`}>
-            <div className="m-2 card card-compact w-70 bg-base-100 shadow-xl">
-              <figure><img src={`${asset.asset}`} alt="Shoes" /></figure>
+          <Link className="m-2 card card-compact w-1/6 bg-base-100 shadow-xl max-h-48" 
+          key={asset.id} to={`asset-details/${asset.id}`}>
+              <figure><img src={`${asset.asset}`} alt="" /></figure>
               <div className="card-body">
-                <p>{asset.title}</p>
+                <p className='font-semibold'>{asset.title}</p>
               </div>
-            </div>
           </Link>
         ))
       }

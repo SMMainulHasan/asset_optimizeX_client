@@ -29,6 +29,8 @@ const LibraryLayout = () => {
                 </div>
             </div>
         </div>
+
+        {/* here goes all content of library */}
         <Outlet/>
     </>
   )
