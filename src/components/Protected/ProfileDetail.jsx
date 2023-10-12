@@ -13,7 +13,6 @@ const ProfileDetail = () => {
             setUserData(res.data);
         })
     },[])
-    console.log(userData)
 
     const handleData = (e)=>{
         setUserData({...userData, [e.target.name]:e.target.value})
@@ -26,7 +25,6 @@ const ProfileDetail = () => {
         axios.post("/api/user/register/", userData)
         .then((res)=> {
               if(res.data){
-                console.log(res.data)
                 navigate('/app/dashboard')
               }
         })

@@ -19,12 +19,11 @@ const OrganizationBtn = ({org}) => {
         setLibraries(res.data);
     })
     },[])
-    console.log(libraries)
 
   return (
     <>
         <li >
-            <Link className='flex flex-row place-content-between py-0'  to={`/app`}>
+            <Link className='flex flex-row place-content-between py-0'  to={`/app/${org.id}`}>
                 <div className='flex items-center'>
                     <FaInstalod className='mr-3'/>
                     {org.organization_name}

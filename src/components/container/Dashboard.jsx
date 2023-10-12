@@ -10,9 +10,10 @@ const Dashboard = () => {
   useEffect(()=>{
     axios.get("/api/organization/list/")
     .then((res) => {
-      setOrganizations(res.data);
+      setOrganizations(res.data.owner_organizations);
     })
   },[])
+  
 
   return (
     <div className="drawer lg:drawer-open">
@@ -38,7 +39,6 @@ const Dashboard = () => {
           <OrganizationBtn key={org.id} org={org}/>
           ))
         }
-        {/* <OrganizationBtn /> */}
         <li><Link to={"/app"}><FcSettings/>Settings</Link></li>
       </ul>
     

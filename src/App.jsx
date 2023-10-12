@@ -22,7 +22,8 @@ import { getToken } from "./services/localStorageService";
 function App() {
   
 const {access_token} = getToken();
-axios.defaults.baseURL="https://asset.pythonanywhere.com/";
+axios.defaults.baseURL=import.meta.env.VITE_BASE_URL;
+// axios.defaults.baseURL="https://asset.pythonanywhere.com/";
 if(access_token !== null){
    axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`
 }

@@ -20,7 +20,6 @@ const handleSubmit = (e)=> {
     axios.post("/api/user/register/", userData)
     .then((res)=> {
           if(res.data){
-            console.log(res.data)
             storeToken(res.data.token)
             navigate('/app')
           }

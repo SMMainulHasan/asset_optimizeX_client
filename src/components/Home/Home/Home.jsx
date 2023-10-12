@@ -1,5 +1,7 @@
 import HomePageBanner from "../banner/HomePageBanner"
 import Core from "../components/core/Core"
+import PricingPageCTA from "../components/cta/PricingPageCTA"
+import Enhance from "../enhance/Enhance"
 
 
 
@@ -8,6 +10,8 @@ const Home = () => {
     <>
         <HomePageBanner/>
         <Core/>
+        <Enhance/>
+        <PricingPageCTA/>
     </>
   )
 }

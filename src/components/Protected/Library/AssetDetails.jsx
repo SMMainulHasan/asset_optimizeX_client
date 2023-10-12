@@ -6,54 +6,52 @@ import { RiShareFill } from "react-icons/ri";
 import { useNavigate, useParams } from 'react-router-dom';
 
 const AssetDetails = () => {
-
-const {library_id,assetId} = useParams()
-const [assetData, setAssetData] = useState({library:library_id});
-const [assetFile, setAssetFile] = useState();
-const [serverError, setServerError] = useState({})
-const navigate = useNavigate();
-
-const handleData = (e)=>{
-    setAssetData({...assetData, [e.target.name]:e.target.value})
-}
-const handleAsset = (e)=>{
-    setAssetFile(e.target.files[0])
-}
-
-const handleSubmit = (e)=> {
-    e.preventDefault();
-    
-    const formData = new FormData();
-    formData.append('title', assetData.title);
-    formData.append('library', assetData.library);
-    formData.append('asset', assetFile);
-    formData.append('location', assetData.location);
-
-    axios.post("/api/assets/", formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-    .then((res)=> {
-          if(res.data){
-            console.log(res.data)
-            navigate(`/app/${library_id}/`)
-          }
-    })
-    .catch((err)=> { setServerError(err.response.data)})
-}
-
-// get asset
-
-    const base_url = import.meta.env.VITE_BASE_URL;
+    const {library_id, assetId} = useParams()
     const [asset, setAsset] = useState({})
+    const [assetFile, setAssetFile] = useState();
+    const [serverError, setServerError] = useState({})
+    const navigate = useNavigate();
+
+    // get asset
+    
     useEffect(()=>{
-        // axios.get(`/api/libraries/${library_id}/assets/`)
         axios.get(`/api/assets/${assetId}/`)
         .then((res) => {
             setAsset(res.data);
         })
     },[])
+
+
+    // update asset
+    const handleData = (e)=>{
+        setAsset({...asset, [e.target.name]:e.target.value})
+    }
+    const handleAsset = (e)=>{
+        setAssetFile(e.target.files[0])
+    }
+
+    const handleSubmit = (e)=> {
+        e.preventDefault();
+        
+        const formData = new FormData();
+        formData.append('title', asset.title);
+        formData.append('library', asset.library);
+        formData.append('asset', assetFile);
+        formData.append('location', asset.location);
+
+        axios.patch(`/api/assets/${assetId}/update/`, formData, {
+            headers: {
+            'Content-Type': 'multipart/form-data',
+            },
+        })
+        .then((res)=> {
+            if(res.data){
+                console.log(res.data)
+                navigate(`/app/${library_id}/`)
+            }
+        })
+        .catch((err)=> { setServerError(err.response.data)})
+    }
 
 
   return (
@@ -78,7 +76,7 @@ const handleSubmit = (e)=> {
                     <form className="space-y-4">
                         <div>
                             <label className="label"><span className="text-base label-text">Title</span></label>
-                            <input name="title" onChange={handleData} value={asset.title} type="text" placeholder="Enter Title Here" className="w-full input input-bordered input-sm" />
+                            <input name="title" value={asset.title} onChange={handleData}  type="text" placeholder="Enter Title Here" className="w-full input input-bordered input-sm" />
                             { serverError.title ? <small className="text-red-600">{serverError.title[0]}</small>:"" }
                         </div>
                         <div>

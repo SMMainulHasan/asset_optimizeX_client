@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-const LibraryAssetContainer = () => {
+const OrgAssetContainer = () => {
   const base_url = import.meta.env.VITE_BASE_URL;
   const {library_id} = useParams()
   const [assets, setAssets] = useState([])
@@ -31,4 +31,4 @@ const LibraryAssetContainer = () => {
   )
 }
 
-export default LibraryAssetContainer
+export default OrgAssetContainer

@@ -8,7 +8,7 @@ import { removeToken } from "../../services/localStorageService";
 
 const DashNavBar = () => {
     const [user,setUser] = useContext(UserContext);
-    const base_url = "https://asset.pythonanywhere.com/";
+    const base_url = import.meta.env.VITE_BASE_URL;
 
     useEffect(()=>{
       axios.get("/api/user/profile/")
