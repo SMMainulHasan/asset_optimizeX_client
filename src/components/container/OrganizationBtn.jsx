@@ -23,7 +23,7 @@ const OrganizationBtn = ({org}) => {
   return (
     <>
         <li >
-            <Link className='flex flex-row place-content-between py-0'  to={`/app/${org.id}`}>
+            <Link className='flex flex-row place-content-between py-0'  to={`/app/org/${org.id}`}>
                 <div className='flex items-center'>
                     <FaInstalod className='mr-3'/>
                     {org.organization_name}
@@ -41,7 +41,7 @@ const OrganizationBtn = ({org}) => {
             </Link>
         </li>
         <li className='ml-4'>
-            <Link  to={`/app/${org.id}/create-library`}><BiFolderPlus/>Create Library</Link>
+            <Link  to={`/app/org/${org.id}/create-library`}><BiFolderPlus/>Create Library</Link>
         </li>
         {
             libraries.map((library,index)=>(

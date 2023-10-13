@@ -12,7 +12,7 @@ const LibraryBtn = ({library}) => {
   return (
     <>
         <li className='ml-5'>
-          <Link className='flex flex-row place-content-between py-0'  to={`/app/${library.id}`}>
+          <Link className='flex flex-row place-content-between py-0'  to={`/app/library/${library.id}`}>
             <div className='flex items-center'>
               <FaAngleRight className='mr-3'/>
               <BsFillFolderFill className='mr-3'/>

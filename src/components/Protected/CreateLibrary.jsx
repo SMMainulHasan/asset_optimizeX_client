@@ -6,11 +6,11 @@ import { useNavigate, useParams } from "react-router-dom";
 const CreateLibrary = () => {
     const [serverError, setServerError] = useState({})
     const [serverMsg, setServerMsg] = useState("")
-    const {organization_id} = useParams();
+    const {org_id} = useParams();
     const Navigate = useNavigate()
 
 
-    const [userData, setUserData] = useState({organization:organization_id});
+    const [userData, setUserData] = useState({organization:org_id});
 
     const handleData = (e)=>{
         setUserData({...userData, [e.target.name]:e.target.value})
@@ -25,10 +25,10 @@ const CreateLibrary = () => {
                 setServerMsg("Library Created Successfully")
               }
               setTimeout(() => {
-                Navigate('/app')
+                Navigate(`/app/org/${org_id}`)
               }, 2000);
         })
-        .catch((err)=> { setServerError(err.response.data)})
+        .catch((err)=> {setServerError(err.response.data.errors)})
     }
     return (
         <div className="w-full relative flex flex-col items-center justify-center">
@@ -50,18 +50,19 @@ const CreateLibrary = () => {
                         <input name="description" onChange={handleData} type="text" placeholder="Library Description" className="w-full input input-bordered" />
                         { serverError.description ? <small className="text-red-600">{serverError.description[0]}</small>:"" }
                     </div>
-                    {/* <div>
-                        <input value={organization_id}  name="organization" onChange={handleData} type="text" placeholder="Enter Zip Code" className="hidden w-full input input-bordered" />
-                        { serverError.organization ? <small className="text-red-600">{serverError.organization[0]}</small>:"" }
-                    </div> */}
-                    
                     <div>
-                        { serverMsg ? 
+                        { serverError.non_field_errors && 
+                        <div className="alert alert-error">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>{serverError.non_field_errors[0]}.</span>
+                        </div>}
+                    </div>
+                    <div>
+                        { serverMsg && 
                         <div className="alert alert-success">
                         <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         <span>{serverMsg}.</span>
-                        </div>
-                        :"" }
+                        </div>}
                     </div>
                     <div>
                         <button onClick={handleSubmit} className="btn btn-block btn-primary">Create Library</button>

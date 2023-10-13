@@ -3,13 +3,16 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Home from "./components/Home/Home/Home";
 import CreateOrganization from "./components/Organization/CreateOrganization";
+import OrgAssetsContainer from "./components/Organization/OrgAssetsContainer";
 import OrganizationEmailVerify from "./components/Organization/OrganizationEmailVerify";
+import OrganizationLayout from "./components/Organization/OrganizationLayout";
 import CreateLibrary from "./components/Protected/CreateLibrary";
 import DashboardLayout from "./components/Protected/DashboardLayout";
 import AddFile from "./components/Protected/Library/AddFile";
 import AssetDetails from "./components/Protected/Library/AssetDetails";
 import LibraryAssetContainer from "./components/Protected/Library/LibraryAssetContainer";
 import LibraryLayout from "./components/Protected/Library/LibraryLayout";
+import SearchResultContainer from "./components/Protected/Library/SearchResultContainer ";
 import ProfileDetail from "./components/Protected/ProfileDetail";
 import PrivateOutlet from "./components/container/PrivateOutlet";
 import TopNavAndFooterOutlet from "./components/container/TopNavAndFooterOutlet";
@@ -49,11 +52,18 @@ if(access_token !== null){
           <Route path="app" element={<DashboardLayout title="Dashboard" />}>
             <Route path="Profile" element={<ProfileDetail/> }/>
             <Route path="create-org" element={<CreateOrganization/> }/>
-            <Route path=":organization_id/create-library" element={<CreateLibrary/> }/>
-            <Route path=":library_id" element={<LibraryLayout/> }>
+
+            <Route path="org/:org_id" element={<OrganizationLayout/> }>
+              <Route path="" element={<OrgAssetsContainer/> }/>
+              <Route path="create-library" element={<CreateLibrary/> }/>
+            </Route>
+
+            <Route path="library/:library_id" element={<LibraryLayout/> }>
               <Route path="" element={<LibraryAssetContainer/> }/>
+              <Route path="search/:search_query" element={<SearchResultContainer/> }/>
               <Route path="add-file" element={<AddFile/> }/>
               <Route path="asset-details/:assetId" element={<AssetDetails/> }/>
+              <Route path="search/:search_query/asset-details/:assetId" element={<AssetDetails/> }/>
             </Route>
           </Route>
         </Route>

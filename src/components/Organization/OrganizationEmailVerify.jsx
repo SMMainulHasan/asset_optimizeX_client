@@ -15,7 +15,6 @@ const OrganizationEmailVerify = () => {
         
         axios.post(`/api/organization/register/${uid}/${user_matching_query}/${hash}/`)
         .then((res)=> {
-            // console.log(res)
             if(res.data){
                 setServerMsg(res.data)
                 console.log(serverMsg)

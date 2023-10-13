@@ -34,7 +34,7 @@ const handleSubmit = (e)=> {
     .then((res)=> {
           if(res.data){
             console.log(res.data)
-            navigate(`/app/${library_id}/`)
+            navigate(`/app/library/${library_id}/`)
           }
     })
     .catch((err)=> { setServerError(err.response.data)})

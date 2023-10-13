@@ -20,7 +20,7 @@ const AssetDetails = () => {
         .then((res) => {
             setAsset(res.data);
         })
-    },[])
+    },[assetId])
 
 
     // update asset
@@ -38,12 +38,13 @@ const AssetDetails = () => {
         formData.append('title', asset.title);
         formData.append('library', asset.library);
         assetFile && formData.append('asset', assetFile);
+        formData.append('description', asset.description);
         formData.append('location', asset.location);
 
         axios.patch(`/api/assets/${assetId}/update/`, formData)
         .then((res)=> {
             if(res.data){
-                navigate(`/app/${library_id}/`)
+                navigate(`/app/library/${library_id}/`)
             }
         })
         .catch((err)=> { setServerError(err.response.data)})
@@ -54,7 +55,7 @@ const AssetDetails = () => {
         axios.delete(`/api/assets/${assetId}/delete/`)
         .then((res)=> {
             if(res.status){
-                navigate(`/app/${library_id}/`)
+                navigate(`/app/library/${library_id}/`)
             }
         })
         .catch((err)=> { setServerError(err.response.data)})
@@ -69,7 +70,8 @@ const AssetDetails = () => {
                     <img src={`${asset.asset}`} />
                     <div className="bg-gray-900 p-3 rounded-3xl bg-opacity-60 absolute text-2xl text-gray-100 top-5 right-5 flex">
                         <RiShareFill className="mx-3"/>
-                        <FaDownload className="mx-3"/>
+                        {/* <FaDownload className="mx-3"/> */}
+                        <a href={`${asset.asset}`} download className="btn btn-outline btn-success btn-xs"><FaDownload className="text-2xl"/></a>
                         <button onClick={deleteAsset} className="btn btn-outline btn-error btn-xs"><MdDelete className="text-2xl"/></button>
                     </div>
                 </div>
@@ -97,8 +99,13 @@ const AssetDetails = () => {
                             { serverError.asset ? <small className="text-red-600">{serverError.asset[0]}</small>:"" }
                         </div>
                         <div>
+                            <label className="label"><span className="text-base label-text">Description</span></label>
+                            <input name="description" onChange={handleData} value={asset.description}type="text" placeholder="Enter Description Here" className="w-full input input-bordered input-sm" />
+                            { serverError.description ? <small className="text-red-600">{serverError.description[0]}</small>:"" }
+                        </div>
+                        <div>
                             <label className="label"><span className="text-base label-text">Location</span></label>
-                            <input name="location" onChange={handleData} value={asset.location}type="text" placeholder="Enter Title Here" className="w-full input input-bordered input-sm" />
+                            <input name="location" onChange={handleData} value={asset.location}type="text" placeholder="Enter Location Here" className="w-full input input-bordered input-sm" />
                             { serverError.location ? <small className="text-red-600">{serverError.location[0]}</small>:"" }
                         </div>
                         <div>

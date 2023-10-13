@@ -1,9 +1,8 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 const LibraryAssetContainer = () => {
-  const base_url = import.meta.env.VITE_BASE_URL;
   const {library_id} = useParams()
   const [assets, setAssets] = useState([])
   useEffect(()=>{
@@ -18,7 +17,7 @@ const LibraryAssetContainer = () => {
     <div className='flex flex-wrap'>
       {
         assets.map((asset)=>(
-          <Link className="m-2 card card-compact w-1/6 bg-base-100 shadow-xl max-h-48" 
+          <Link className="m-2 overflow-hidden card card-compact w-1/6 bg-base-100 shadow-xl max-h-48" 
           key={asset.id} to={`asset-details/${asset.id}`}>
               <figure><img src={`${asset.asset}`} alt="" /></figure>
               <div className="card-body">
