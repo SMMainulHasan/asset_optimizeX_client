@@ -30,11 +30,11 @@ const OrganizationBtn = ({org}) => {
                 </div>
                 <div className="dropdown dropdown-end dropdown-hover h-12 pt-0">
                 <label tabIndex={0} className="btn btn-ghost">
-                    <Link to={""}><IoMdOptions/></Link>
+                    <Link to={`/app/org/${org.id}`}><IoMdOptions/></Link>
                 </label>
                 <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-md w-52 border border-gray-300">
                 <li><Link to={""}><CgRename/>Rename</Link></li>
-                <li><Link to={""}><BsPersonFillAdd/>Add User</Link></li>
+                <li><Link to={`/app/org/${org.id}/${org.organization_name}/add-member`}><BsPersonFillAdd/>Add Member</Link></li>
                 <li><Link to="" className='text-red-500'><MdDelete/>Delete</Link></li>
                 </ul>
                 </div>

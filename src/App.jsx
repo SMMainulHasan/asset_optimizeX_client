@@ -4,8 +4,10 @@ import axios from "axios";
 import Home from "./components/Home/Home/Home";
 import CreateOrganization from "./components/Organization/CreateOrganization";
 import OrgAssetsContainer from "./components/Organization/OrgAssetsContainer";
+import OrgInviteAccept from "./components/Organization/OrgInviteAccept";
 import OrganizationEmailVerify from "./components/Organization/OrganizationEmailVerify";
 import OrganizationLayout from "./components/Organization/OrganizationLayout";
+import AddMemberToOrg from "./components/Protected/AddMemberToOrg";
 import CreateLibrary from "./components/Protected/CreateLibrary";
 import DashboardLayout from "./components/Protected/DashboardLayout";
 import AddFile from "./components/Protected/Library/AddFile";
@@ -43,6 +45,7 @@ if(access_token !== null){
           <Route path="user/forgot-pass" element={<ForgotPass/>}/>
           <Route path="api/user/reset/:uid/:user_matching_query" element={<ForgotResetPass/>}/>
           <Route path="api/organization/register/:uid/:user_matching_query/:hash" element={<OrganizationEmailVerify/>}/>
+          <Route path="api/organization/add-user/:uid/:user_matching_query/:hash" element={<OrgInviteAccept/>}/>
         </Route>
 
         
@@ -55,6 +58,7 @@ if(access_token !== null){
 
             <Route path="org/:org_id" element={<OrganizationLayout/> }>
               <Route path="" element={<OrgAssetsContainer/> }/>
+              <Route path=":org_name/add-member" element={<AddMemberToOrg/> }/>
               <Route path="create-library" element={<CreateLibrary/> }/>
             </Route>
 
