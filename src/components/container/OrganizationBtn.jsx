@@ -23,7 +23,7 @@ const OrganizationBtn = ({org}) => {
     <>
         <li >
             <NavLink className='flex flex-row place-content-between py-0'  to={`/app/org/${org.id}`}>
-                <div className='flex items-center'>
+                <div className='flex items-center font-semibold'>
                     <FaInstalod className='mr-3'/>
                     {org.organization_name}
                 </div>

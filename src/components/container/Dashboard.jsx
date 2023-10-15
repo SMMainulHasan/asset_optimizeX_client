@@ -43,7 +43,10 @@ const Dashboard = () => {
           <OrganizationBtn key={org.id} org={org}/>
           ))
         }
-        <div className='flex items-center mt-8 ms-5 font-bold'><PiArrowBendLeftDownBold className='me-3'/>YOU ARE MEMBER IN <BsFillPeopleFill className='ms-3'/></div>
+        {
+          addedOrganizations[0] && 
+          <div className='flex items-center mt-8 ms-5 font-bold'><PiArrowBendLeftDownBold className='me-3'/>YOU ARE MEMBER IN <BsFillPeopleFill className='ms-3'/></div> 
+        }
         {
           addedOrganizations.map((org)=>(
           <OrganizationBtn key={org.id} org={org}/>
