@@ -27,6 +27,7 @@ const OrganizationBtn = ({org}) => {
                     <FaInstalod className='mr-3'/>
                     {org.organization_name}
                 </div>
+                <span className="badge border border-blue-600">{!org.role ? "Owner" : org.role }</span>
                 <div className="dropdown dropdown-end dropdown-hover h-12 pt-0">
                     <label tabIndex={0} className="btn btn-ghost">
                         <Link to={`/app/org/${org.id}`}><IoMdOptions/></Link>
