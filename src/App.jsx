@@ -60,15 +60,24 @@ if(access_token !== null){
               <Route path="" element={<OrgAssetsContainer/> }/>
               <Route path=":org_name/add-member" element={<AddMemberToOrg/> }/>
               <Route path="create-library" element={<CreateLibrary/> }/>
+
+              <Route path="library/:library_id" element={<LibraryLayout/> }>
+                <Route path="" element={<LibraryAssetContainer/> }/>
+                <Route path="search/:search_query" element={<SearchResultContainer/> }/>
+                <Route path="add-file" element={<AddFile/> }/>
+                <Route path="asset-details/:assetId" element={<AssetDetails/> }/>
+                <Route path="search/:search_query/asset-details/:assetId" element={<AssetDetails/> }/>
+              </Route>
+
             </Route>
 
-            <Route path="library/:library_id" element={<LibraryLayout/> }>
+            {/* <Route path="library/:library_id" element={<LibraryLayout/> }>
               <Route path="" element={<LibraryAssetContainer/> }/>
               <Route path="search/:search_query" element={<SearchResultContainer/> }/>
               <Route path="add-file" element={<AddFile/> }/>
               <Route path="asset-details/:assetId" element={<AssetDetails/> }/>
               <Route path="search/:search_query/asset-details/:assetId" element={<AssetDetails/> }/>
-            </Route>
+            </Route> */}
           </Route>
         </Route>
       </Routes>

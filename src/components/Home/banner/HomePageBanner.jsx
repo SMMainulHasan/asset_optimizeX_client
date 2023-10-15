@@ -10,7 +10,7 @@ const HomePageBanner = () => {
         alt="Home-banner"
         // width={1000}
         // height={1000}
-        // layout="responsive"
+        layout="responsive"
       />
       <div className="container mx-auto">
         <div className="absolute inset-y-20 flex items-baseline flex-col gap-y-6 w-[50%] pricing-head">

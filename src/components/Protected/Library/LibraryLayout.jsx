@@ -4,7 +4,7 @@ import { MdAddCard } from 'react-icons/md'
 import { Link, Outlet, useParams } from 'react-router-dom'
 
 const LibraryLayout = () => {
-    const {library_id} = useParams()
+    const {org_id, library_id} = useParams()
     const [searchQuery, setSearchQuery] = useState();
 
     const handleData = (e)=>{
@@ -15,7 +15,7 @@ const LibraryLayout = () => {
   return (
     <>
         <div className='flex mb-5'>
-            <Link className="flex-auto btn btn-wide mr-10 border border-gray-300" to={`/app/library/${library_id}/add-file`}> <MdAddCard/>Add File</Link>
+            <Link className="flex-auto btn btn-wide mr-10 border border-gray-300" to={`/app/org/${org_id}/library/${library_id}/add-file`}> <MdAddCard/>Add File</Link>
             <div className=" flex-1 join">
                 <div>
                     <div>
@@ -23,18 +23,10 @@ const LibraryLayout = () => {
                     </div>
                 </div>
                 <div className="indicator">
-                    <Link className="btn join-item" to={`/app/library/${library_id}/search/${searchQuery ||undefined}`} >Search</Link>
+                    <Link className="btn join-item" to={`/app/org/${org_id}/library/${library_id}/search/${searchQuery ||undefined}`} >Search</Link>
                 </div>
             </div>
         </div>
-
-        {/* {searchResult && 
-        <div>
-            <p className='font-bold text-2xl'>Search Results</p>
-            <SearchResultContainer searchResult={searchResult}/>
-            <p className='m-5 font-bold text-2xl'>Libraries All Assets</p>
-        </div>
-        }    */}
 
         {/* here goes all content of library */}
         <Outlet/>

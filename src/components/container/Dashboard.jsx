@@ -1,16 +1,20 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { AiOutlineAppstoreAdd } from 'react-icons/ai';
+import { BsFillPeopleFill } from 'react-icons/bs';
 import { FcSettings } from 'react-icons/fc';
+import { PiArrowBendLeftDownBold } from 'react-icons/pi';
 import { Link, Outlet } from "react-router-dom";
 import OrganizationBtn from './Organizationbtn';
 
 const Dashboard = () => {
-  const [organizations, setOrganizations] = useState([])
+  const [ownerOrganizations, setOwnerOrganizations] = useState([]);
+  const [addedOrganizations, setAddedOrganizations] = useState([]);
   useEffect(()=>{
     axios.get("/api/organization/list/")
     .then((res) => {
-      setOrganizations(res.data.owner_organizations);
+      setOwnerOrganizations(res.data.owner_organizations);
+      setAddedOrganizations(res.data.member_organizations);
     })
   },[])
   
@@ -35,7 +39,13 @@ const Dashboard = () => {
         {/* Sidebar content here */}
         <li><Link to={"/app/create-org"}><AiOutlineAppstoreAdd/>Create Organization</Link></li>
         {
-          organizations.map((org)=>(
+          ownerOrganizations.map((org)=>(
+          <OrganizationBtn key={org.id} org={org}/>
+          ))
+        }
+        <div className='flex items-center mt-8 ms-5 font-bold'><PiArrowBendLeftDownBold className='me-3'/>YOU ARE MEMBER IN <BsFillPeopleFill className='ms-3'/></div>
+        {
+          addedOrganizations.map((org)=>(
           <OrganizationBtn key={org.id} org={org}/>
           ))
         }

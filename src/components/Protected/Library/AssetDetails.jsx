@@ -7,7 +7,7 @@ import { RiShareFill } from "react-icons/ri";
 import { useNavigate, useParams } from 'react-router-dom';
 
 const AssetDetails = () => {
-    const {library_id, assetId} = useParams()
+    const {org_id, library_id, assetId} = useParams()
     const [asset, setAsset] = useState({})
     const [assetFile, setAssetFile] = useState();
     const [serverError, setServerError] = useState({})
@@ -44,7 +44,7 @@ const AssetDetails = () => {
         axios.patch(`/api/assets/${assetId}/update/`, formData)
         .then((res)=> {
             if(res.data){
-                navigate(`/app/library/${library_id}/`)
+                navigate(`/app/org/${org_id}/library/${library_id}/`)
             }
         })
         .catch((err)=> { setServerError(err.response.data)})
@@ -55,7 +55,7 @@ const AssetDetails = () => {
         axios.delete(`/api/assets/${assetId}/delete/`)
         .then((res)=> {
             if(res.status){
-                navigate(`/app/library/${library_id}/`)
+                navigate(`/app/org/${org_id}/library/${library_id}/`)
             }
         })
         .catch((err)=> { setServerError(err.response.data)})

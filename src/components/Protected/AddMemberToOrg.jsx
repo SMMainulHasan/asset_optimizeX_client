@@ -22,7 +22,14 @@ const AddMemberToOrg = () => {
         
         axios.post("/api/organization/add-user/", userData)
         .then((res)=> {
-            res.data.message ? setServerMsg(res.data.message): setServerErrMsg(res.data)
+            if(res.data.message){ 
+                setServerMsg(res.data.message)
+             }
+             else if(res.data.msg){ 
+                setServerErrMsg(res.data.msg)
+             }else{
+                setServerErrMsg(res.data)
+             }
         })
         .catch((err)=> {setServerError(err.response.data.errors)})
     }
