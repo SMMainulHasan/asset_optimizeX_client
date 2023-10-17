@@ -18,6 +18,7 @@ import SearchResultContainer from "./components/Protected/Library/SearchResultCo
 import ProfileDetail from "./components/Protected/ProfileDetail";
 import PrivateOutlet from "./components/container/PrivateOutlet";
 import TopNavAndFooterOutlet from "./components/container/TopNavAndFooterOutlet";
+import ChangePass from "./components/user/ChangePass/ChangePass";
 import ForgotPass from "./components/user/ForgotPass/ForgotPass";
 import ForgotResetPass from "./components/user/ForgotResetPass/ForgotResetPass";
 import UserLogin from "./components/user/login/login";
@@ -53,7 +54,8 @@ if(access_token !== null){
 
         <Route path="/*" element={<PrivateOutlet />}>
           <Route path="app" element={<DashboardLayout title="Dashboard" />}>
-            <Route path="Profile" element={<ProfileDetail/> }/>
+            <Route path="profile" element={<ProfileDetail/> }/>
+            <Route path="profile/change-pass" element={<ChangePass/> }/>
             <Route path="create-org" element={<CreateOrganization/> }/>
 
             <Route path="org/:org_id" element={<OrganizationLayout/> }>
@@ -70,14 +72,6 @@ if(access_token !== null){
               </Route>
 
             </Route>
-
-            {/* <Route path="library/:library_id" element={<LibraryLayout/> }>
-              <Route path="" element={<LibraryAssetContainer/> }/>
-              <Route path="search/:search_query" element={<SearchResultContainer/> }/>
-              <Route path="add-file" element={<AddFile/> }/>
-              <Route path="asset-details/:assetId" element={<AssetDetails/> }/>
-              <Route path="search/:search_query/asset-details/:assetId" element={<AssetDetails/> }/>
-            </Route> */}
           </Route>
         </Route>
       </Routes>

@@ -1,14 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 
 const AddMemberToOrg = () => {
     const [serverError, setServerError] = useState({});
     const [serverMsg, setServerMsg] = useState('');
     const [serverErrMsg, setServerErrMsg] = useState('');
-    const {org_id, org_name} = useParams();
-    const Navigate = useNavigate();
+    const {org_name} = useParams();
 
 
     const [userData, setUserData] = useState({organization:org_name});

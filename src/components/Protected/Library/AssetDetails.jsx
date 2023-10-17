@@ -64,13 +64,27 @@ const AssetDetails = () => {
   return (
     <div className="relative w-full flex flex-col items-center justify-center mt-5">
         <div className="w-full p-6 bg-white rounded-md shadow-lg border-top flex ">
+
             {/*asset details right side start*/}
             <div className="w-3/5 ">
                 <div className="relative">
                     <img src={`${asset.asset}`} />
                     <div className="bg-gray-900 p-3 rounded-3xl bg-opacity-60 absolute text-2xl text-gray-100 top-5 right-5 flex">
-                        <RiShareFill className="mx-3"/>
-                        {/* <FaDownload className="mx-3"/> */}
+
+                        {/* <RiShareFill className="mx-3"/> */}
+                            
+                        <button className="btn" onClick={()=>document.getElementById('my_modal_3').showModal()}><RiShareFill className="mx-3"/></button>
+                        <dialog id="my_modal_3" className="modal text-gray-600">
+                            <div className="modal-box">
+                                <form method="dialog">
+                                {/* if there is a button in form, it will close the modal */}
+                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                </form>
+                                <h3 className="font-bold text-lg">Hello!</h3>
+                                <p className="py-4">Press ESC key or click on ✕ button to close</p>
+                            </div>
+                        </dialog>
+
                         <a href={`${asset.asset}`} download className="btn btn-outline btn-success btn-xs"><FaDownload className="text-2xl"/></a>
                         <button onClick={deleteAsset} className="btn btn-outline btn-error btn-xs"><MdDelete className="text-2xl"/></button>
                     </div>

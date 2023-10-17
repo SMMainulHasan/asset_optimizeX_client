@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect } from "react";
 import { FiLogOut } from 'react-icons/fi';
 import { GrUserSettings } from 'react-icons/gr';
+import { PiPasswordFill } from 'react-icons/pi';
 import { Link } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import { removeToken } from "../../services/localStorageService";
@@ -45,6 +46,7 @@ const DashNavBar = () => {
       </label>
       <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
         <li><Link to={"/app/profile"}><GrUserSettings/>{user.name}</Link></li>
+        <li><Link to={"/app/profile/change-pass"}><PiPasswordFill/>Change Your Password</Link></li>
         <li><Link onClick={logout} className="text-red-500" to="/home"><FiLogOut/>Logout</Link></li>
       </ul>
     </div>

@@ -1,16 +1,13 @@
 
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate, useParams } from 'react-router-dom';
 
-const UserRegister = () => {
+const ChangePass = () => {
 
 const [userData, setUserData] = useState({});
 const [serverError, setServerError] = useState({})
-const [serverMsg, setServerMsg] = useState({})
+const [serverMsg, setServerMsg] = useState()
 const [badRequestError, setBadRequestError] = useState("")
-const navigate = useNavigate();
-const { uid, user_matching_query} = useParams();
 
 const handleData = (e)=>{
     setUserData({...userData, [e.target.name]:e.target.value})
@@ -19,22 +16,15 @@ const handleData = (e)=>{
 const handleSubmit = (e)=> {
     e.preventDefault();
     
-    axios.post(`/api/user/reset-password/${uid}/${user_matching_query}/`, userData)
+    axios.post(`/api/user/changepassword/`, userData)
     .then((res)=> {
-        // console.log(res)
           if(res.data){
-            setServerMsg(res.data)
-            console.log(serverMsg)
-            // storeToken(res.data.token)
-            setTimeout(() => {
-                // navigate('/user/login')
-            }, 3000);
-            navigate('/user/login')
+            setServerMsg(res.data.msg)
           }
     })
     .catch((err)=> { console.log(err)
         if(err.code == "ERR_BAD_RESPONSE"){
-            setBadRequestError("Failed to reset your password")
+            setBadRequestError("Failed to Change your password")
             setServerError({})
           }
         else{
@@ -44,10 +34,9 @@ const handleSubmit = (e)=> {
 }
 
   return (
-    <div className="relative flex flex-col items-center justify-center h-screen overflow-hidden mt-5
-    ">
-        <div className="w-full p-6 bg-white border-t-4 border-blue-600 rounded-md shadow-lg border-top lg:max-w-lg">
-            <h1 className="text-3xl font-semibold text-center text-gray-700">Asset OptimizeX</h1>
+    <div className="relative flex flex-col items-center justify-center mt-5">
+        <div className="w-full p-6 bg-white rounded-md shadow-lg border-top ">
+            <h1 className="text-3xl font-semibold text-center text-gray-700">Change Password</h1>
             <form className="space-y-4">
                 <div>
                     <label className="label">
@@ -65,6 +54,13 @@ const handleSubmit = (e)=> {
                     { badRequestError ? <small className="text-red-600">{badRequestError}</small>:"" }
                 </div>
                 <div>
+                    { serverMsg && 
+                    <div className="alert alert-success">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span>{serverMsg}.</span>
+                    </div>}
+                </div>
+                <div>
                     <button onClick={handleSubmit} className="btn btn-block btn-primary">Reset Password</button>
                 </div>
             </form>
@@ -73,4 +69,4 @@ const handleSubmit = (e)=> {
   )
 }
 
-export default UserRegister
+export default ChangePass

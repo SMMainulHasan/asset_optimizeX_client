@@ -31,7 +31,6 @@ const handleSubmit = (e)=> {
     for (const asset of assets) {
         formData.append('asset', asset);
     }
-    console.log(formData, "<<<<<<<<<")
     axios.post("/api/assets/", formData)
     .then((res)=> {
         if(res.data){

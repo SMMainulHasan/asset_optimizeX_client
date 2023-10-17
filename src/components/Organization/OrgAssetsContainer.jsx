@@ -9,6 +9,7 @@ const OrgAssetsContainer = () => {
   useEffect(()=>{
     axios.get(`/api/library/asset/${org_id}/`)
     .then((res) => {
+      console.log(res.data)
       setAssets(res.data);
     })
   },[org_id])
@@ -18,7 +19,7 @@ const OrgAssetsContainer = () => {
       {
         assets.map((asset, index)=>(
           <Link className="m-2 overflow-hidden card card-compact w-1/6 bg-base-100 shadow-xl max-h-48" key={index} to={``}>
-              <figure><img src={`${base_url+asset}`} alt="" /></figure>
+              <figure><img src={`${base_url+asset.asset}`} alt="" /></figure>
           </Link>
         ))
       }
