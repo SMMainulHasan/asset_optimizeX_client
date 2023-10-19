@@ -61,6 +61,21 @@ const AssetDetails = () => {
         .catch((err)=> { setServerError(err.response.data)})
     }
 
+    // Download Assets function
+    const downloadFileUrl=(url)=>{
+        fetch(url).then(res => res.blob()).then(blob=> {
+            const blobURL = window.URL.createObjectURL(new Blob([blob]));
+            const fileName = url.split("/").pop();
+            const aTag = document.createElement("a");
+            aTag.href = blobURL;
+            aTag.setAttribute("download", fileName);
+            document.body.appendChild(aTag);
+            aTag.click();
+            aTag.remove();
+        })
+        
+    }
+
   return (
     <div className="relative w-full flex flex-col items-center justify-center mt-5">
         <div className="w-full p-6 bg-white rounded-md shadow-lg border-top flex ">
@@ -73,20 +88,31 @@ const AssetDetails = () => {
 
                         {/* <RiShareFill className="mx-3"/> */}
                             
-                        <button className="btn" onClick={()=>document.getElementById('my_modal_3').showModal()}><RiShareFill className="mx-3"/></button>
+                        <button className="hover:text-gray-400" onClick={()=>document.getElementById('my_modal_3').showModal()}><RiShareFill className="mx-3"/></button>
                         <dialog id="my_modal_3" className="modal text-gray-600">
                             <div className="modal-box">
                                 <form method="dialog">
                                 {/* if there is a button in form, it will close the modal */}
                                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                 </form>
-                                <h3 className="font-bold text-lg">Hello!</h3>
-                                <p className="py-4">Press ESC key or click on ✕ button to close</p>
+                                <h3 className="font-bold text-lg">Share Links</h3>
+                                <div className="form-control">
+                                    <div className="input-group">
+                                        <select className="select select-bordered">
+                                        <option disabled selected>Pick category</option>
+                                        <option >1 Day</option>
+                                        <option>3 Day</option>
+                                        <option>1 Week</option>
+                                        <option>1 Month</option>
+                                        </select>
+                                        <button className="btn">Create Link</button>
+                                    </div>
+                                </div>
                             </div>
                         </dialog>
 
-                        <a href={`${asset.asset}`} download className="btn btn-outline btn-success btn-xs"><FaDownload className="text-2xl"/></a>
-                        <button onClick={deleteAsset} className="btn btn-outline btn-error btn-xs"><MdDelete className="text-2xl"/></button>
+                        <button onClick={()=> {downloadFileUrl(asset.asset)}} className="btn-xs hover:text-gray-400"><FaDownload className="text-2xl"/></button>
+                        <button onClick={deleteAsset} className="btn-xs hover:text-red-400"><MdDelete className="text-2xl"/></button>
                     </div>
                 </div>
             </div>

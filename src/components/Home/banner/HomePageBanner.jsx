@@ -5,12 +5,12 @@ import "./HomePageBanner.css";
 const HomePageBanner = () => {
   return (
     <section className="relative">
-      <img
+      <img className="w-full"
         src={PricingPageBannerImage}
         alt="Home-banner"
         // width={1000}
         // height={1000}
-        layout="responsive"
+        // layout="responsive"
       />
       <div className="container mx-auto">
         <div className="absolute inset-y-20 flex items-baseline flex-col gap-y-6 w-[50%] pricing-head">
@@ -20,13 +20,10 @@ const HomePageBanner = () => {
           </h1>
           <p className="text-black">
             Companies of all sizes are able to unlock more value from their
-            assets with Brandfolder. Get the right plan and pricing for your
+            assets with Asset OptimizeX. Get the right plan and pricing for your
             business. We would love to partner with you to build the digital
             asset management solution best suited to your needs.
           </p>
-          <button className="btn btn-primary" type="button">
-            Book a Demo
-          </button>
         </div>
       </div>
     </section>

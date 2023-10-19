@@ -1,34 +1,14 @@
 export const navbarMenu = [
   {
-    name: "Product",
-    path: "/product",
-  },
-  {
-    name: "Client Stories",
-    path: "/client-stories",
-  },
-  {
-    name: "Solutions",
-    path: "/solutions",
-    children: [
-      {
-        name: "Solutions 1",
-        path: "/solutions-1",
-      },
-    ],
+    name: "Documentation",
+    path: "/documentation",
   },
   {
     name: "Pricing",
     path: "/pricing",
   },
   {
-    name: "Resources",
-    path: "/resources",
-    children: [
-      {
-        name: "Resources 1",
-        path: "/resources-1",
-      },
-    ],
+    name: "About",
+    path: "/about",
   },
 ];
