@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 // import './App.css';
 import axios from "axios";
+import DocumentationLayout from "./components/Documentation/DocumentationLayout";
 import Home from "./components/Home/Home/Home";
 import BuyPlan from "./components/Organization/BuyPlan";
 import CreateOrganization from "./components/Organization/CreateOrganization";
@@ -17,6 +18,7 @@ import AddFile from "./components/Protected/Library/AddFile";
 import AssetDetails from "./components/Protected/Library/AssetDetails";
 import LibraryAssetContainer from "./components/Protected/Library/LibraryAssetContainer";
 import LibraryLayout from "./components/Protected/Library/LibraryLayout";
+import RenameLibrary from "./components/Protected/Library/RenameLibrary";
 import SearchResultContainer from "./components/Protected/Library/SearchResultContainer ";
 import ProfileDetail from "./components/Protected/ProfileDetail";
 import PrivateOutlet from "./components/container/PrivateOutlet";
@@ -44,6 +46,7 @@ if(access_token !== null){
         <Route path="/*" element={<TopNavAndFooterOutlet />}>
           <Route path="" element={<Navigate to="/home" />} />
           <Route path="home" element={<Home />}/>
+          <Route path="documentation" element={<DocumentationLayout/> }/>
           <Route path="user/login" element={<UserLogin />}/>
           <Route path="user/register" element={<UserRegister/>}/>
           <Route path="user/forgot-pass" element={<ForgotPass/>}/>
@@ -73,6 +76,7 @@ if(access_token !== null){
                 <Route path="" element={<LibraryAssetContainer/> }/>
                 <Route path="search/:search_query" element={<SearchResultContainer/> }/>
                 <Route path="add-file" element={<AddFile/> }/>
+                <Route path="rename-lib" element={<RenameLibrary/> }/>
                 <Route path="asset-details/:assetId" element={<AssetDetails/> }/>
                 <Route path="search/:search_query/asset-details/:assetId" element={<AssetDetails/> }/>
               </Route>

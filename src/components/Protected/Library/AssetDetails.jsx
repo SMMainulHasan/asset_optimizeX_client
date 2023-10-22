@@ -11,6 +11,7 @@ const AssetDetails = () => {
     const [asset, setAsset] = useState({})
     const [assetFile, setAssetFile] = useState();
     const [serverError, setServerError] = useState({})
+    const [serverMsg, setServerMsg] = useState()
     const navigate = useNavigate();
 
     // get asset
@@ -55,6 +56,8 @@ const AssetDetails = () => {
         axios.delete(`/api/assets/${assetId}/delete/`)
         .then((res)=> {
             if(res.status){
+                console.log(res.data)
+                setServerMsg(res.data);
                 navigate(`/app/org/${org_id}/library/${library_id}/`)
             }
         })
@@ -112,7 +115,21 @@ const AssetDetails = () => {
                         </dialog>
 
                         <button onClick={()=> {downloadFileUrl(asset.asset)}} className="btn-xs hover:text-gray-400"><FaDownload className="text-2xl"/></button>
-                        <button onClick={deleteAsset} className="btn-xs hover:text-red-400"><MdDelete className="text-2xl"/></button>
+                        
+                        <button onClick={()=>document.getElementById('my_modal_1').showModal()} className="btn-xs hover:text-red-400"><MdDelete className="text-2xl"/></button>
+
+                        {/* <button className="btn btn-outline btn-error" onClick={()=>document.getElementById('my_modal_1').showModal()}>Delete Your Organization</button> */}
+                        <dialog id="my_modal_1" className="modal text-slate-800">
+                        <div className="modal-box">
+                            <h3 className="font-bold text-lg">Are you sure you want to delete this asset</h3>
+                            <div className="modal-action">
+                            <button onClick={()=> {deleteAsset()}} className="btn btn-outline btn-error">Delete</button>
+                            <form method="dialog">
+                                <button className="btn " >Cancel</button>
+                            </form>
+                            </div>
+                        </div>
+                        </dialog>
                     </div>
                 </div>
             </div>
@@ -159,6 +176,18 @@ const AssetDetails = () => {
                             <span>{serverError.non_field_errors[0]}.</span>
                             </div>:"" }
                         </div>
+                        { console.log(serverMsg?.message, "//////////")}
+                        {
+                            serverMsg?.message && 
+                            <div className="toast toast-top toast-end">
+                            <div className="alert alert-info">
+                                <span>New mail arrived.</span>
+                            </div>
+                            <div className="alert alert-success">
+                                <span>Message sent successfully.</span>
+                            </div>
+                            </div>
+                        }
                         <div>
                             <button onClick={handleSubmit}  className="btn btn-block btn-primary">Update</button>
                         </div>

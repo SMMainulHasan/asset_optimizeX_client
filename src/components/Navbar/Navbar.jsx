@@ -29,11 +29,7 @@ const logout=()=> {
               />
             </svg>
           </label>
-          
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
+          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
             {navbarMenu.map((item, index) => {
               const { name, path} = item;
               return (
@@ -44,7 +40,9 @@ const logout=()=> {
             })}
           </ul>
         </div>
-        <Link className="btn btn-ghost normal-case text-2xl " to='/home'>Asset OptimizeX</Link>
+        <Link className="btn btn-ghost normal-case text-2xl " to='/home'> 
+        <span className="font-bold font-roboto text-xl bg-slate-100 p-1 border rounded-xl text-slate-500">AO<span className="text-purple-700">X</span></span>
+        Asset OptimizeX</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 z-10">
@@ -53,19 +51,7 @@ const logout=()=> {
             // console.log(children);
             return (
               <li key={index} tabIndex={0}>
-                {!children && <Link href={path}>{name}</Link>}
-                {children?.length > 0 && (
-                  <details>
-                    <summary>{name}</summary>
-                    <ul className="p-2">
-                      {children.map((item, index) => (
-                        <li key={index}>
-                          <a>{item.name}</a>
-                        </li>
-                      ))}
-                    </ul>
-                  </details>
-                )}
+                {!children && <Link to={`${path}`}>{name}</Link>}
               </li>
             );
           })}
@@ -73,8 +59,8 @@ const logout=()=> {
       </div>
       <div className="navbar-end gap-x-3 pr-5">
         {
-          access_token ? <a className="btn btn-outline" href="/app">Your Assets</a>
-          : <a className="btn btn-outline" href="/user/login">Log In</a>
+          access_token ? <a className="btn btn-outline text-slate-100" href="/app">Your Assets</a>
+          : <a className="btn btn-outline text-slate-100" href="/user/login">Log In</a>
         }
         {
           access_token ? <a onClick={logout} className="btn btn-primary" href="/home">Log Out</a>

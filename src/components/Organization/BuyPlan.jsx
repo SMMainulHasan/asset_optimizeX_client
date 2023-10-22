@@ -11,7 +11,7 @@ const BuyPlan = () => {
         axios.post(`/api/organization/payment/${org_id}/`)
         .then((res)=> {
             console.log(res, "<-----------")
-            if (res.data == "Alread You are Premium User"){
+            if (res.data == "Already You are Premium User"){
                 setPaymentStatus(res.data);
             }
             else{
