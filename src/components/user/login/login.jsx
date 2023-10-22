@@ -19,6 +19,7 @@ const UserLogin = () => {
               if(res.data){
                 storeToken(res.data.token)
                 navigate('/app')
+                window.location.reload(true);
               }
         })
         .catch((err)=> { setServerError(err.response.data.errors)})

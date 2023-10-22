@@ -2,11 +2,14 @@ import { Navigate, Route, Routes } from "react-router-dom";
 // import './App.css';
 import axios from "axios";
 import Home from "./components/Home/Home/Home";
+import BuyPlan from "./components/Organization/BuyPlan";
 import CreateOrganization from "./components/Organization/CreateOrganization";
 import OrgAssetsContainer from "./components/Organization/OrgAssetsContainer";
 import OrgInviteAccept from "./components/Organization/OrgInviteAccept";
+import OrgSettings from "./components/Organization/OrgSettings";
 import OrganizationEmailVerify from "./components/Organization/OrganizationEmailVerify";
 import OrganizationLayout from "./components/Organization/OrganizationLayout";
+import RenameOrg from "./components/Organization/RenameOrg";
 import AddMemberToOrg from "./components/Protected/AddMemberToOrg";
 import CreateLibrary from "./components/Protected/CreateLibrary";
 import DashboardLayout from "./components/Protected/DashboardLayout";
@@ -62,6 +65,9 @@ if(access_token !== null){
               <Route path="" element={<OrgAssetsContainer/> }/>
               <Route path=":org_name/add-member" element={<AddMemberToOrg/> }/>
               <Route path="create-library" element={<CreateLibrary/> }/>
+              <Route path="rename-org" element={<RenameOrg/> }/>
+              <Route path="buy-plan" element={<BuyPlan/> }/>
+              <Route path="org-settings" element={<OrgSettings/> }/>
 
               <Route path="library/:library_id" element={<LibraryLayout/> }>
                 <Route path="" element={<LibraryAssetContainer/> }/>

@@ -1,7 +1,7 @@
 
 import { useState } from 'react'
 import { MdAddCard } from 'react-icons/md'
-import { Link, Outlet, useParams } from 'react-router-dom'
+import { Link, NavLink, Outlet, useParams } from 'react-router-dom'
 
 const LibraryLayout = () => {
     const {org_id, library_id} = useParams()
@@ -15,15 +15,15 @@ const LibraryLayout = () => {
   return (
     <>
         <div className='flex mb-5'>
-            <Link className="flex-auto btn btn-wide mr-10 border border-gray-300" to={`/app/org/${org_id}/library/${library_id}/add-file`}> <MdAddCard/>Add File</Link>
+            <NavLink className="flex-auto btn btn-wide mr-10 bg-gradient-to-r from-purple-700 to-indigo-500" to={`/app/org/${org_id}/library/${library_id}/add-file`}> <MdAddCard/>Add File</NavLink>
             <div className=" flex-1 join">
                 <div>
                     <div>
                     <input className="input input-bordered join-item" value={searchQuery} onChange={handleData} placeholder="Search"/>
                     </div>
                 </div>
-                <div className="indicator">
-                    <Link className="btn join-item" to={`/app/org/${org_id}/library/${library_id}/search/${searchQuery ||undefined}`} >Search</Link>
+                <div className="indicator ">
+                    <Link className="btn join-item bg-gradient-to-r from-purple-700 to-indigo-500" to={`/app/org/${org_id}/library/${library_id}/search/${searchQuery ||undefined}`} >Search</Link>
                 </div>
             </div>
         </div>

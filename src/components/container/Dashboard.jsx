@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { AiOutlineAppstoreAdd } from 'react-icons/ai';
 import { BsFillPeopleFill } from 'react-icons/bs';
-import { FcSettings } from 'react-icons/fc';
 import { PiArrowBendLeftDownBold } from 'react-icons/pi';
 import { Link, Outlet } from "react-router-dom";
 import OrganizationBtn from './Organizationbtn';
@@ -33,11 +32,11 @@ const Dashboard = () => {
 
 
     </div> 
-    <div className="drawer-side">
+    <div className="drawer-side ">
       <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label> 
-      <ul className="menu p-4 w-80 min-h-full text-base-content bg-gray-100">
+      <ul className="menu p-4 w-80 min-h-full text-base-content  bg-gray-0">
         {/* Sidebar content here */}
-        <li><Link to={"/app/create-org"}><AiOutlineAppstoreAdd/>Create Organization</Link></li>
+        <li className='font-semibold'><Link to={"/app/create-org"}><AiOutlineAppstoreAdd/>Create Organization</Link></li>
         {
           ownerOrganizations.map((org)=>(
           <OrganizationBtn key={org.id} org={org}/>
@@ -52,7 +51,6 @@ const Dashboard = () => {
           <OrganizationBtn key={org.id} org={org}/>
           ))
         }
-        <li><Link to={"/app"}><FcSettings/>Settings</Link></li>
       </ul>
     
     </div>

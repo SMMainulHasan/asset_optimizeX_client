@@ -10,7 +10,7 @@ const logout=()=> {
 }
 
   return (
-    <div className="navbar bg-base-100 py-3">
+    <div className="navbar text-gray-100 py-3 bg-gradient-to-r  from-purple-700 to-indigo-500">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -29,52 +29,22 @@ const logout=()=> {
               />
             </svg>
           </label>
-          {/* <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
-          </ul> */}
+          
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             {navbarMenu.map((item, index) => {
-              const { name, path, children } = item;
+              const { name, path} = item;
               return (
-                <li key={index}>
-                  <a>{name}</a>
-                  {children?.length > 0 ? (
-                    <ul className="p-2">
-                      {children.map((childItem, index) => (
-                        <li key={index}>
-                          <a>{childItem.name}</a>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
+                <li key={index} className="border border-blue-600">
+                  <Link to={`${path}`}>{name}</Link>
                 </li>
               );
             })}
           </ul>
         </div>
-        <Link className="btn btn-ghost normal-case text-xl" to='/home'>Asset OptimizeX</Link>
+        <Link className="btn btn-ghost normal-case text-2xl " to='/home'>Asset OptimizeX</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 z-10">
