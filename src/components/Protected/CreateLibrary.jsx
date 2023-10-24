@@ -32,7 +32,7 @@ const CreateLibrary = () => {
     }
     return (
         <div className="w-full relative flex flex-col items-center justify-center">
-            <div className="w-full p-6 bg-white rounded-md shadow-lg border-top ">
+            <div className="w-full p-6 bg-white rounded-md shadow-lg border-top h-screen">
                 <div><h1 className="text-3xl font-semibold text-gray-700 mb-5">Create Library</h1></div>
                 <form className="space-y-4">
                 

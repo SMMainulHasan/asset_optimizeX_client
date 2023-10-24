@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { AiOutlineAppstoreAdd } from 'react-icons/ai';
+import { BiHelpCircle } from 'react-icons/bi';
 import { BsFillPeopleFill } from 'react-icons/bs';
 import { PiArrowBendLeftDownBold } from 'react-icons/pi';
 import { Link, Outlet } from "react-router-dom";
@@ -32,7 +33,7 @@ const Dashboard = () => {
 
 
     </div> 
-    <div className="drawer-side ">
+    <div className="drawer-side">
       <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label> 
       <ul className="menu p-4 w-80 min-h-full text-base-content  bg-gray-0">
         {/* Sidebar content here */}
@@ -51,6 +52,7 @@ const Dashboard = () => {
           <OrganizationBtn key={org.id} org={org}/>
           ))
         }
+        <li className='font-semibold'><Link to={"/app"}><BiHelpCircle/>Info Help</Link></li>
       </ul>
     
     </div>

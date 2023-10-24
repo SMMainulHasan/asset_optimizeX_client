@@ -5,6 +5,7 @@ import { FaDownload } from "react-icons/fa";
 import { MdDelete } from 'react-icons/md';
 import { RiShareFill } from "react-icons/ri";
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const AssetDetails = () => {
     const {org_id, library_id, assetId} = useParams()
@@ -45,10 +46,14 @@ const AssetDetails = () => {
         axios.patch(`/api/assets/${assetId}/update/`, formData)
         .then((res)=> {
             if(res.data){
+                console.log(res.data)
+                toast(res.data.message, {
+                    autoClose: 2000
+                });
                 navigate(`/app/org/${org_id}/library/${library_id}/`)
             }
         })
-        .catch((err)=> { setServerError(err.response.data)})
+        .catch((err)=> {console.log(err); setServerError(err.response.data)})
     }
 
     //Delete asset
@@ -56,7 +61,10 @@ const AssetDetails = () => {
         axios.delete(`/api/assets/${assetId}/delete/`)
         .then((res)=> {
             if(res.status){
-                console.log(res.data)
+                console.log(res.data.message)
+                toast(res.data.message, {
+                    autoClose: 2000
+                });
                 setServerMsg(res.data);
                 navigate(`/app/org/${org_id}/library/${library_id}/`)
             }

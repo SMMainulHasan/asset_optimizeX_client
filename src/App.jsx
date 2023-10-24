@@ -1,6 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 // import './App.css';
 import axios from "axios";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import DocumentationLayout from "./components/Documentation/DocumentationLayout";
 import Home from "./components/Home/Home/Home";
 import BuyPlan from "./components/Organization/BuyPlan";
@@ -23,6 +25,7 @@ import SearchResultContainer from "./components/Protected/Library/SearchResultCo
 import ProfileDetail from "./components/Protected/ProfileDetail";
 import PrivateOutlet from "./components/container/PrivateOutlet";
 import TopNavAndFooterOutlet from "./components/container/TopNavAndFooterOutlet";
+import WelcomePage from "./components/container/WellcomePage";
 import ChangePass from "./components/user/ChangePass/ChangePass";
 import ForgotPass from "./components/user/ForgotPass/ForgotPass";
 import ForgotResetPass from "./components/user/ForgotResetPass/ForgotResetPass";
@@ -60,6 +63,7 @@ if(access_token !== null){
 
         <Route path="/*" element={<PrivateOutlet />}>
           <Route path="app" element={<DashboardLayout title="Dashboard" />}>
+            <Route path="" element={<WelcomePage/> }/>
             <Route path="profile" element={<ProfileDetail/> }/>
             <Route path="profile/change-pass" element={<ChangePass/> }/>
             <Route path="create-org" element={<CreateOrganization/> }/>
@@ -85,6 +89,7 @@ if(access_token !== null){
           </Route>
         </Route>
       </Routes>
+      <ToastContainer/>
     </>
   )
 }
