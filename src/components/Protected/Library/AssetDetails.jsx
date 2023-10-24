@@ -1,7 +1,8 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FaDownload } from "react-icons/fa";
+import { AiOutlineCaretDown } from "react-icons/ai";
+import { HiDownload } from "react-icons/hi";
 import { MdDelete } from 'react-icons/md';
 import { RiShareFill } from "react-icons/ri";
 import { useNavigate, useParams } from 'react-router-dom';
@@ -56,6 +57,17 @@ const AssetDetails = () => {
         .catch((err)=> {console.log(err); setServerError(err.response.data)})
     }
 
+    //Get old assets /asset versions
+    const [assetVersions, setAssetVersions] = useState([]);
+
+    useEffect(() => {
+      axios.get(`api/assets/prev/${assetId}/`)
+      .then(res => {
+        setAssetVersions(res.data.reverse());
+      }).catch(err=> {});
+    }, [])
+    
+
     //Delete asset
     const deleteAsset = ()=> {
         axios.delete(`/api/assets/${assetId}/delete/`)
@@ -71,6 +83,22 @@ const AssetDetails = () => {
         })
         .catch((err)=> { setServerError(err.response.data)})
     }
+
+    //Date parser
+    const ShowDateTime = (date) => {
+        const options = {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+          };
+        const dateObject = new Date(date);
+        const formattedDate = dateObject.toLocaleString('en-US', options);
+        return formattedDate;
+    }
+
 
     // Download Assets function
     const downloadFileUrl=(url)=>{
@@ -122,7 +150,7 @@ const AssetDetails = () => {
                             </div>
                         </dialog>
 
-                        <button onClick={()=> {downloadFileUrl(asset.asset)}} className="btn-xs hover:text-gray-400"><FaDownload className="text-2xl"/></button>
+                        <button onClick={()=> {downloadFileUrl(asset.asset)}} className="btn-xs hover:text-gray-400"><HiDownload className="text-2xl"/></button>
                         
                         <button onClick={()=>document.getElementById('my_modal_1').showModal()} className="btn-xs hover:text-red-400"><MdDelete className="text-2xl"/></button>
 
@@ -163,6 +191,26 @@ const AssetDetails = () => {
             
                             { serverError.asset ? <small className="text-red-600">{serverError.asset[0]}</small>:"" }
                         </div>
+                        
+                        {/* Assets old versions displaying */}
+                        <div className="dropdown">
+                            <label tabIndex={0} className="btn btn-sm m-1 border-blue-600">Assets Old Versions <AiOutlineCaretDown/></label>
+                            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-80 border border-blue-600">
+                                {
+                                    assetVersions[0] ?
+                                    assetVersions.map((oldAsset) => (
+                                        <li key={oldAsset.id}>
+                                            <div className="flex items-center">
+                                            <p>{ShowDateTime(oldAsset?.created_at)}</p>
+                                            <button onClick={()=> {downloadFileUrl(oldAsset.asset)}} className="btn-xs hover:text-gray-400"><HiDownload className="text-xl"/></button>
+                                            </div>
+                                        </li>
+                                    )) : <li>Don&apos;t have any old versions.</li>
+                                }
+                            </ul>
+                        </div>
+
+
                         <div>
                             <label className="label"><span className="text-base label-text">Description</span></label>
                             <input name="description" onChange={handleData} value={asset.description}type="text" placeholder="Enter Description Here" className="w-full input input-bordered input-sm" />
@@ -184,7 +232,6 @@ const AssetDetails = () => {
                             <span>{serverError.non_field_errors[0]}.</span>
                             </div>:"" }
                         </div>
-                        { console.log(serverMsg?.message, "//////////")}
                         {
                             serverMsg?.message && 
                             <div className="toast toast-top toast-end">

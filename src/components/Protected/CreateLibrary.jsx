@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 const CreateLibrary = () => {
@@ -21,12 +22,12 @@ const CreateLibrary = () => {
         
         axios.post("/api/library/create/", userData)
         .then((res)=> {
-              if(res.data){
-                setServerMsg("Library Created Successfully")
-              }
-              setTimeout(() => {
-                Navigate(`/app/org/${org_id}`)
-              }, 2000);
+            setServerMsg("Library Created Successfully")
+            toast.success("Library Created Successfully", {autoClose:1000})
+            Navigate(`/app/org/${org_id}`)
+            setTimeout(() => {
+                window.location.reload(true)
+            }, 1500);
         })
         .catch((err)=> {setServerError(err.response.data.errors)})
     }

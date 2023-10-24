@@ -10,15 +10,31 @@ const OrgSettings = () => {
 
     const [members, setMembers] = useState();
     const [orgDetail, setOrgDetail] = useState();
+    const [date, setDate] = useState()
 
     // Get Organization details
     useEffect(() => {
         axios.get(`/api/organization/detail/${org_id}/`)
         .then(res=> {
-            console.log(res.data, "org detail")
             setOrgDetail(res.data)
         })
     },[org_id])
+
+   
+     //Date parser
+    const ShowDateTime = (date) => {
+        const options = {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+          };
+        const dateObject = new Date(date);
+        const formattedDate = dateObject.toLocaleString('en-US', options);
+        return formattedDate;
+    }
 
     //Update Organization info
     const [serverError, setServerError] = useState({})
@@ -109,7 +125,8 @@ const OrgSettings = () => {
                     { serverError.organization_name ? <small className="text-red-600">{serverError.organization_name[0]}</small>:"" }
                 </div>
                 <div>
-                    <span className="text-base label-text">Created Date: {orgDetail?.created_date}</span>
+                    <span className="text-base label-text">
+                        Created Date: {ShowDateTime(orgDetail?.created_date)}</span>
                 </div>
                 <div>
                     <label className="label font-semibold">
@@ -194,7 +211,7 @@ const OrgSettings = () => {
             <div className="w-full p-6 bg-white rounded-md shadow-lg border-top">
                 <p className='text-slate-500 font-bold text-3xl'>Payment History</p><br /><hr />
                 
-                {
+                {   paymentsHistory[0] ?
                     paymentsHistory.map((payment)=> (
                         <div key={payment.pay} className='flex justify-center items-center'>
                             <div className='w-full p-5 border border-slate-500 rounded-xl mt-5'>
@@ -217,7 +234,7 @@ const OrgSettings = () => {
                                 </div><hr />
                             </div>
                         </div>
-                    ))
+                    )) : <h1 className="text-2xl font-semibold text-gray-500 m-5 text-center">You Don&apos;t Have Any Payment History.</h1>
                 }
 
             </div>

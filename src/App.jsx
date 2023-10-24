@@ -4,7 +4,6 @@ import axios from "axios";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DocumentationLayout from "./components/Documentation/DocumentationLayout";
-import Home from "./components/Home/Home/Home";
 import BuyPlan from "./components/Organization/BuyPlan";
 import CreateOrganization from "./components/Organization/CreateOrganization";
 import OrgAssetsContainer from "./components/Organization/OrgAssetsContainer";
@@ -48,7 +47,7 @@ if(access_token !== null){
 
         <Route path="/*" element={<TopNavAndFooterOutlet />}>
           <Route path="" element={<Navigate to="/home" />} />
-          <Route path="home" element={<Home />}/>
+          {/* <Route path="home" element={<Home />}/> */}
           <Route path="documentation" element={<DocumentationLayout/> }/>
           <Route path="user/login" element={<UserLogin />}/>
           <Route path="user/register" element={<UserRegister/>}/>
