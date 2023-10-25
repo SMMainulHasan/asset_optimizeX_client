@@ -112,7 +112,6 @@ const AssetDetails = () => {
             aTag.click();
             aTag.remove();
         })
-        
     }
 
   return (
