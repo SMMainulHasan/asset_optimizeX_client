@@ -8,6 +8,7 @@ import BuyPlan from "./components/Organization/BuyPlan";
 import CreateOrganization from "./components/Organization/CreateOrganization";
 import OrgAssetsContainer from "./components/Organization/OrgAssetsContainer";
 import OrgInviteAccept from "./components/Organization/OrgInviteAccept";
+import OrgJoinWithCode from "./components/Organization/OrgJoinWithCode";
 import OrgSettings from "./components/Organization/OrgSettings";
 import OrganizationEmailVerify from "./components/Organization/OrganizationEmailVerify";
 import OrganizationLayout from "./components/Organization/OrganizationLayout";
@@ -63,6 +64,7 @@ if(access_token !== null){
         <Route path="/*" element={<PrivateOutlet />}>
           <Route path="app" element={<DashboardLayout title="Dashboard" />}>
             <Route path="" element={<WelcomePage/> }/>
+            <Route path="join-with-code" element={<OrgJoinWithCode/> }/>
             <Route path="profile" element={<ProfileDetail/> }/>
             <Route path="profile/change-pass" element={<ChangePass/> }/>
             <Route path="create-org" element={<CreateOrganization/> }/>

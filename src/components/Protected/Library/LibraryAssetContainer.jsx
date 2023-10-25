@@ -22,22 +22,28 @@ const LibraryAssetContainer = () => {
     return extension;
   }
 
+  const isImgExtension =(extension)=>{
+    const imgExt = ["png", "jpg", "webp", "jpeg", "gif", "png", "apng", "svg", "bmp", "bmp", "ico"];
+    if (imgExt.indexOf(extension) != -1){
+      return true;
+    }
+    return false;
+  }
+
   return (
-    // <div className='grid grid-flow-col gap-1 w-full'>
     <div className='flex flex-wrap'>
       {
         assets.map((asset)=>(
-          <Link className="m-2 overflow-hidden card card-compact w-1/6 bg-base-100 shadow-xl h-48" 
-          key={asset.id} to={`asset-details/${asset.id}`}>
-              <div className=''>
-                <div className='h-36'>
+          <Link className="m-2 overflow-hidden card card-compact w-1/6 bg-base-100 shadow-xl h-48" key={asset.id} to={`asset-details/${asset.id}`}>
+              <div className="overflow-hidden card card-compact bg-base-100 ">
+                <div className='h-36 flex items-center justify-center'>
                   {
-                    getFileExtension(asset.asset) == "pdf" ?
-                    <p className='text-center items-center text-4xl text-red-400'>Pdf</p>
-                    : <figure><img src={`${asset.asset}`} alt="" /></figure>
+                    isImgExtension(getFileExtension(asset.asset)) ?
+                    <figure><img src={`${asset.asset}`} alt="" /></figure>
+                    : <p className='text-center items-center text-4xl text-purple-400'>.{getFileExtension(asset.asset)}</p>
                   }
                 </div>
-                <div className="card-body">
+                <div className="card-body bg-base-100">
                   <p className='font-semibold'>{asset.title}</p>
                 </div>
               </div>

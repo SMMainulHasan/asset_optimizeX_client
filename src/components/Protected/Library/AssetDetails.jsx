@@ -113,6 +113,18 @@ const AssetDetails = () => {
             aTag.remove();
         })
     }
+    const getFileExtension = (url) =>{
+        const extension = url.split(".").pop();
+        return extension;
+      }
+    
+      const isImgExtension =(extension)=>{
+        const imgExt = ["png", "jpg", "webp", "jpeg", "gif", "png", "apng", "svg", "bmp", "bmp", "ico"];
+        if (imgExt.indexOf(extension) != -1){
+          return true;
+        }
+        return false;
+      }
 
   return (
     <div className="relative w-full flex flex-col items-center justify-center mt-5">
@@ -121,7 +133,14 @@ const AssetDetails = () => {
             {/*asset details right side start*/}
             <div className="w-3/5 ">
                 <div className="relative">
-                    <img src={`${asset.asset}`} />
+                    {
+                        asset?.asset &&
+                        (
+                        isImgExtension(getFileExtension(asset.asset)) ?
+                        <img src={`${asset.asset}`} />
+                        : <p className='flex justify-center items-center text-6xl text-purple-400 border rounded-xl bg-slate-200 border-slate-200 h-screen '>.{getFileExtension(asset.asset)}</p>
+                        )
+                    }
                     <div className="bg-gray-900 p-3 rounded-3xl bg-opacity-60 absolute text-2xl text-gray-100 top-5 right-5 flex">
 
                         {/* <RiShareFill className="mx-3"/> */}
@@ -172,7 +191,7 @@ const AssetDetails = () => {
 
             {/*asset details left side start*/}
             <div className="w-2/5 rounded-md shadow-xl">
-                <div className="w-full p-6 bg-white rounded-md shadow-lg border-top ">
+                <div className="w-full p-6 bg-white rounded-md shadow-lg border-top h-screen">
                     <form className="space-y-4">
                         <div>
                             <label className="label"><span className="text-base label-text">Title</span></label>

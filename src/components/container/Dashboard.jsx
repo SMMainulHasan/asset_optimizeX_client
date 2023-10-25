@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { AiOutlineAppstoreAdd } from 'react-icons/ai';
 import { BiHelpCircle } from 'react-icons/bi';
 import { BsFillPeopleFill } from 'react-icons/bs';
+import { MdConfirmationNumber } from 'react-icons/md';
 import { PiArrowBendLeftDownBold } from 'react-icons/pi';
 import { Link, Outlet } from "react-router-dom";
 import OrganizationBtn from './Organizationbtn';
@@ -52,6 +53,7 @@ const Dashboard = () => {
           <OrganizationBtn key={org.id} org={org}/>
           ))
         }
+        <li className='font-semibold'><Link to={"/app/join-with-code"}><MdConfirmationNumber/>Join Organization With Code</Link></li>
         <li className='font-semibold'><Link to={"/app"}><BiHelpCircle/>Info Help</Link></li>
       </ul>
     

@@ -2,7 +2,7 @@
 
 const Footer = () => {
   return (
-    <footer className="footer footer-center p-10 bg-primary text-primary-content">
+    <footer className="footer footer-center p-10 bg-gradient-to-r from-purple-700 to-indigo-500 text-primary-content">
       <aside>
       <span className="font-bold font-roboto text-4xl bg-slate-100 p-1 border rounded-xl text-slate-500">AO<span className="text-purple-600">X</span></span>
         <p className="font-bold">

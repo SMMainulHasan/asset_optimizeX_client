@@ -239,6 +239,19 @@ const OrgSettings = () => {
 
             </div>
         </div>
+        
+        {/* Invite code Organization */}
+        <div className="w-full relative flex flex-col items-center justify-center mt-5">
+            <div className="w-full p-6 bg-white rounded-md shadow-lg border-top">
+                <div className="overflow-x-auto">
+                    <div className="mt-5">
+                        <h1 className="text-2xl font-bold mb-5">Invite Code</h1><hr /><br />
+                        <p className="font-bold text-xl text-purple-500">Organization Invite Code:  <span className="text-xl border border-purple-500 rounded-full px-5 bg-slate-200 text-red-500">{orgDetail?.invited_code}</span></p>
+                        <p>User will be able to join with this cold as &quot;Viewer&quot;.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         {/* Delete Organization */}
         <div className="w-full relative flex flex-col items-center justify-center mt-5">
