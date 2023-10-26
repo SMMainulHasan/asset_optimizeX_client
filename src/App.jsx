@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DocumentationLayout from "./components/Documentation/DocumentationLayout";
 import AboutPage from "./components/Home/AboutPage/AboutPage";
+import ContactPage from "./components/Home/ContactPage/ContactPage";
 import HomeLayout from "./components/Home/HomeLayout";
 import BuyPlan from "./components/Organization/BuyPlan";
 import CreateOrganization from "./components/Organization/CreateOrganization";
@@ -25,6 +26,7 @@ import LibraryLayout from "./components/Protected/Library/LibraryLayout";
 import RenameLibrary from "./components/Protected/Library/RenameLibrary";
 import SearchResultContainer from "./components/Protected/Library/SearchResultContainer ";
 import ProfileDetail from "./components/Protected/ProfileDetail";
+import PaymentSuccess from "./components/container/PaymentSuccess";
 import PrivateOutlet from "./components/container/PrivateOutlet";
 import TopNavAndFooterOutlet from "./components/container/TopNavAndFooterOutlet";
 import WelcomePage from "./components/container/WellcomePage";
@@ -52,6 +54,7 @@ if(access_token !== null){
           <Route path="" element={<Navigate to="/home" />} />
           <Route path="home" element={<HomeLayout />}/>
           <Route path="about" element={<AboutPage />}/>
+          <Route path="contact" element={<ContactPage />}/>
           <Route path="documentation" element={<DocumentationLayout/> }/>
           <Route path="user/login" element={<UserLogin />}/>
           <Route path="user/register" element={<UserRegister/>}/>
@@ -71,6 +74,7 @@ if(access_token !== null){
             <Route path="profile" element={<ProfileDetail/> }/>
             <Route path="profile/change-pass" element={<ChangePass/> }/>
             <Route path="create-org" element={<CreateOrganization/> }/>
+            <Route path="payment-success" element={<PaymentSuccess />}/>
 
             <Route path="org/:org_id" element={<OrganizationLayout/> }>
               <Route path="" element={<OrgAssetsContainer/> }/>

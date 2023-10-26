@@ -21,12 +21,12 @@ const OrgJoinWithCode = () => {
         axios.post(`/api/organization/code/`, orgData)
         .then((res)=> {
               if(res.data){
-                toast.success("You successfully entered in organization.",{autoClose:1500})
-                Navigate(`/app/`)
+                setServerError(res.data.message);
+                toast(res.data.message,{autoClose:3000})
               }
               setTimeout(() => { 
                 window.location.reload(true);
-              }, 2000);
+              }, 3000);
         })
         .catch((err)=> {setServerError(err.response.data.errors)})
     }
@@ -41,14 +41,12 @@ const OrgJoinWithCode = () => {
                             <span className="text-base label-text">Organization Name:</span>
                         </label>
                         <input name="organization_name" onChange={handleData} type="text" placeholder="Enter Organization name" className="w-full input input-bordered" />
-                        { serverError.organization_name ? <small className="text-red-600">{serverError.organization_name[0]}</small>:"" }
                     </div>
                     <div>
                         <label className="label">
                             <span className="text-base label-text">Invite Code:</span>
                         </label>
                         <input name="invited_code" onChange={handleData} type="text" placeholder="Enter Organization Invite Code" className="w-full input input-bordered" />
-                        { serverError.organization_name ? <small className="text-red-600">{serverError.organization_name[0]}</small>:"" }
                     </div>
                     <div>
                         <button onClick={handleSubmit} className="btn btn-block btn-primary bg-gradient-to-r from-purple-700 to-indigo-500">Join Organization As Viewer</button>

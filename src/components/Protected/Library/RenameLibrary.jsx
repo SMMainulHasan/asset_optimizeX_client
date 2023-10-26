@@ -21,7 +21,8 @@ const RenameLibrary = () => {
         axios.patch(`/api/library/update/${library_id}/`, libData)
         .then((res)=> {
               if(res.data){
-                toast.success("Library Name changed Successfully", {autoClose:2000});
+                console.log(res.data, "rename")
+                toast.success(res.data.message, {autoClose:2000});
               setTimeout(() => {
                 Navigate(`/app/org/${org_id}/library/${library_id}`)
                 window.location.reload(true);
