@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const CreateOrganization = () => {
     const [userData, setUserData] = useState({});
@@ -65,7 +66,7 @@ const CreateOrganization = () => {
                     </div>
                     <div>
                         <label className="label">
-                            <span className="text-base label-text">Accept terms & condition</span>
+                            <span className="text-base label-text">Accept <Link className="text-blue-800"> Terms & Conditions</Link>.</span>
                         </label>
                         <input type="radio" onChange={handleData} name="tc" value="True" className="radio" />
                         { serverError.tc ? <small className="text-red-600">{serverError.tc[0]}</small>:"" }

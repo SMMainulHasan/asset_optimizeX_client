@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 const LibraryBtn = ({library}) => {
-console.log({library})
   const deleteLibrary = (lib_id)=> {
     axios.delete(`/api/library/delete/${lib_id}/`)
     .then((res)=> {

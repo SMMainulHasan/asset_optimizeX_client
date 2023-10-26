@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { storeToken } from "../../../services/localStorageService";
 
 const UserLogin = () => {
@@ -25,8 +25,8 @@ const UserLogin = () => {
         .catch((err)=> { setServerError(err.response.data.errors)})
     }
     return (
-      <div className="relative flex flex-col items-center justify-center">
-          <div className="w-full p-6 bg-white border-t-4 border-blue-600 rounded-md shadow-lg border-top lg:max-w-lg">
+      <div className="relative flex flex-col items-center justify-center my-8">
+          <div className="w-full p-6 bg-white rounded-md shadow-lg border-top lg:max-w-lg">
               <h1 className="text-3xl font-semibold text-center text-gray-700">Asset OptimizeX</h1>
               
               <form className="space-y-4">
@@ -51,7 +51,8 @@ const UserLogin = () => {
                   <div>
                       <button onClick={handleSubmit} className="btn btn-block btn-primary">Login</button>
                   </div>
-              </form>
+              </form><br />
+              <span>Don&apos;t have an account <Link className="text-blue-800" to={"/user/register"}>Register.</Link></span>
           </div>
       </div>
     )

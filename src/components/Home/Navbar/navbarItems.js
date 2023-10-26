@@ -4,8 +4,8 @@ export const navbarMenu = [
     path: "/documentation",
   },
   {
-    name: "Pricing",
-    path: "/pricing",
+    name: "Contact",
+    path: "/Contact",
   },
   {
     name: "About",

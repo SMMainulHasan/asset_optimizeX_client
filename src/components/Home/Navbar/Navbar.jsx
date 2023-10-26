@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { getToken, removeToken } from "../../services/localStorageService";
+import { getToken, removeToken } from "../../../services/localStorageService";
 import { navbarMenu } from "./navbarItems";
 
 const Navbar = () => {
@@ -40,8 +40,8 @@ const logout=()=> {
             })}
           </ul>
         </div>
-        <Link className="btn btn-ghost normal-case text-2xl " to='/home'> 
-        <span className="font-bold font-roboto text-xl bg-slate-100 p-1 border rounded-xl text-slate-500">AO<span className="text-purple-700">X</span></span>
+        <Link className="btn btn-ghost normal-case text-3xl ms-5" to='/home'> 
+        {/* <span className="font-bold font-roboto text-xl bg-slate-100 p-1 border rounded-xl text-slate-500">AO<span className="text-purple-700">X</span></span> */}
         Asset OptimizeX</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -59,12 +59,12 @@ const logout=()=> {
       </div>
       <div className="navbar-end gap-x-3 pr-5">
         {
-          access_token ? <a className="btn btn-outline text-slate-100" href="/app">Your Assets</a>
-          : <a className="btn btn-outline text-slate-100" href="/user/login">Log In</a>
+          access_token ? <a className="btn btn-outline text-slate-100 rounded-full text-base-100" href="/app">Your Assets</a>
+          : <a className="btn btn-outline text-slate-100 rounded-full text-base-100" href="/user/login">Log In</a>
         }
         {
-          access_token ? <a onClick={logout} className="btn btn-primary" href="/home">Log Out</a>
-          : <a  className="btn btn-primary" href="/user/register">Get Started</a>
+          access_token ? <a onClick={logout} className="btn btn-primary rounded-full  text-base-100" href="/home">Log Out</a>
+          : <a  className="btn btn-primary rounded-full text-base-100" href="/user/register">Get Started</a>
         }
         
       </div>

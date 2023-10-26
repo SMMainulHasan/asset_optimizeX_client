@@ -1,7 +1,7 @@
 
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { storeToken } from "../../../services/localStorageService";
 
 const UserRegister = () => {
@@ -29,9 +29,9 @@ const handleSubmit = (e)=> {
 }
 
   return (
-    <div className="relative flex flex-col items-center justify-center m-5 mb-5
+    <div className="relative flex flex-col items-center justify-center my-8
     ">
-        <div className="w-full p-6 bg-white border-t-4 border-blue-600 rounded-md shadow-lg border-top lg:max-w-lg">
+        <div className="w-full p-6 bg-white rounded-md shadow-lg border-top lg:max-w-lg">
             <h1 className="text-3xl font-semibold text-center text-gray-700">Asset OptimizeX</h1>
             <form className="space-y-4">
                 <div>
@@ -79,7 +79,9 @@ const handleSubmit = (e)=> {
                 <div>
                     <button onClick={handleSubmit} className="btn btn-block btn-primary">Register</button>
                 </div>
-            </form>
+                
+            </form><br />
+            <span>Already have an account <Link className="text-blue-800" to={"/user/login"}>Login.</Link></span>
         </div>
     </div>
   )

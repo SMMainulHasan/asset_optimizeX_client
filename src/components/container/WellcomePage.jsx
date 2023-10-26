@@ -12,6 +12,7 @@ const WelcomePage = () => {
               <div className='w-1/3 p-5 border border-slate-500 rounded-xl mt-10'>
                   <p className='font-bold text-xl text-slate-500 mb-3  text-center'>Basic (Free*)</p> <br />
                   <div className='flex text-center items-center'><FcCheckmark/><p className='text-slate-800 ms-7'>Add upto 3 members.</p></div><hr />
+                  <div className='flex text-center items-center'><FcCheckmark/><p className='text-slate-800 ms-7'>Limited Library Creation.</p></div><hr />
                   <div className='flex text-center items-center'><FcCheckmark/><p className='text-slate-800 ms-7'>Limited Asset Upload.</p></div><hr />
                   <div className='flex text-center items-center'><FcCheckmark/><p className='text-slate-800 ms-7'>Limited Storage.</p></div><hr />
                   <div className='flex text-center items-center'><FcCheckmark/><p className='text-slate-800 ms-7'>Unlimited Download.</p></div><hr />

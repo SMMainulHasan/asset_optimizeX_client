@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from "react-toastify";
 
 const AddFile = () => {
 
@@ -34,7 +35,10 @@ const handleSubmit = (e)=> {
     axios.post("/api/assets/", formData)
     .then((res)=> {
         if(res.data){
-            navigate(`/app/org/${org_id}/library/${library_id}/`)
+            res.data.message && toast.error(res.data.message, {autoClose:2000});
+            !res.data.message && toast.success("Asset Uploaded Successfully.", {autoClose:1000});
+            
+            navigate(`/app/org/${org_id}/library/${library_id}/`);
         }
     })
     .catch((err)=> { setServerError(err.response.data)})

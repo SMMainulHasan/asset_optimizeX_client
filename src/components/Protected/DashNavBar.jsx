@@ -26,13 +26,13 @@ const DashNavBar = () => {
   return (
     <div className="navbar text-gray-100 bg-gradient-to-r from-purple-700 to-indigo-500">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-2xl" href="/home">
-        <span className="font-bold font-roboto text-xl bg-slate-100 p-1 border rounded-xl text-slate-500">AO<span className="text-purple-700">X</span></span>
+        <a className="btn btn-ghost normal-case text-2xl lg:ms-8" href="/home">
+        {/* <span className="font-bold font-roboto text-xl bg-slate-100 p-1 border rounded-xl text-slate-500">AO<span className="text-purple-700">X</span></span> */}
           Asset OptimizeX</a>
       </div>
       <div className="flex-none gap-2">
         <button className="btn btn-ghost">
-          <Link to={"/app/profile"}>{user.name}</Link>
+          <Link className="border border-slate-100 px-4 py-3 rounded-full" to={"/app/profile"}>{user.name}</Link>
         </button>
         
         <div className="dropdown dropdown-end dropdown-hover">

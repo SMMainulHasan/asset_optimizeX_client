@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BsPersonFillAdd } from "react-icons/bs";
+import { FaCrown } from "react-icons/fa";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -185,7 +186,7 @@ const OrgSettings = () => {
                             {
                                 members?.map((member, index)=> (
                                     <tr key ={index} className="hover">
-                                        <th>{index}</th>
+                                        <th>{index+1}</th>
                                         <td>{member.email}</td>
                                         <td>{member.role}</td>
                                         {
@@ -209,7 +210,10 @@ const OrgSettings = () => {
         {/*Organization Payment History*/}
         <div className="w-full relative flex flex-col items-center justify-center mt-5">
             <div className="w-full p-6 bg-white rounded-md shadow-lg border-top">
-                <p className='text-slate-500 font-bold text-3xl'>Payment History</p><br /><hr />
+                <div className="flex justify-between">
+                    <p className='text-slate-500 font-bold text-3xl'>Payment History</p><br /><hr />
+                    <Link to={`/app/org/${org_id}/buy-plan`} className='flex items-center text-yellow-500 text-center border rounded-full bg-gradient-to-r from-purple-700 to-indigo-500 text-xl p-1 px-3'>UPGRADE TO PRO <FaCrown className="ms-2"/></Link>
+                </div>
                 
                 {   paymentsHistory[0] ?
                     paymentsHistory.map((payment)=> (
@@ -218,7 +222,7 @@ const OrgSettings = () => {
                                 <p className='ms-5 font-bold text-l text-red-400'>Payment ID {payment.payment_id}</p> <br />
                                 <div className='flex'>
                                     <p className='w-full text-slate-800 ms-7 font-semibold'>Amount:  {payment.amount}$</p>
-                                    <p className='w-full text-slate-800 ms-7 font-semibold'>Payment Time:  {payment.created_at}</p>
+                                    <p className='w-full text-slate-800 ms-7 font-semibold'>Payment Time:  {ShowDateTime(payment?.created_at)}</p>
                                 </div><hr />
                                 <div className=''>
                                     <p className='text-slate-800 ms-7 font-semibold'>Payment Status:  {payment.status}</p>

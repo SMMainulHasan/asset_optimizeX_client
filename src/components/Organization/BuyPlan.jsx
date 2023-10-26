@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
+import { FaCrown } from "react-icons/fa";
+import { FcCheckmark } from "react-icons/fc";
 import { useParams } from "react-router-dom";
 
 
@@ -10,7 +12,6 @@ const BuyPlan = () => {
     const Subscribe= () => {
         axios.post(`/api/organization/payment/${org_id}/`)
         .then((res)=> {
-            console.log(res, "<-----------")
             if (res.data == "Already You are Premium User"){
                 setPaymentStatus(res.data);
             }
@@ -24,14 +25,16 @@ const BuyPlan = () => {
             <div className="w-full p-6 bg-white rounded-md shadow-lg border-top min-h-screen flex items-center justify-center">
                 <div className="card w-96 glass m-5 bg-gradient-to-r from-purple-700 to-indigo-500">
                 <div className="card-body text-center text-gray-100 flex items-center justify-center">
-                    <h2 className="card-title center font-bold">Ultimate Plan</h2>
-                    <p>Storage upto 100 GB</p>
-                    <p>Unlimited Collaboration</p>
-                    <p>Unlimited Library Creation</p>
-                    <p>1000/- TK Per Month</p>
+                    <p className="card-title center text-2xl mb-4 font-bold">Ultimate Plan <FaCrown className="ms-2"/></p>
+                    <div>
+                    <p className="flex items-center my-2"><FcCheckmark className="mr-4"/>Storage upto 100 GB</p><hr />
+                    <p className="flex items-center my-2"><FcCheckmark className="mr-4"/>Unlimited Collaboration</p><hr />
+                    <p className="flex items-center my-2"><FcCheckmark className="mr-4"/>Unlimited Library Creation</p><hr />
+                    <p className="flex items-center my-2"><FcCheckmark className="mr-4"/>Unlimited asset upload</p><hr />
+                    <p className="flex items-center my-2"><FcCheckmark className="mr-4"/>Advance Feature Access</p><hr />
+                    </div>
 
-                    <p>NEED TO WORK ON HERE </p>
-
+                    <p className="font-semibold">Only 1000$ Per Month</p>
                     <div className="card-actions justify-end">
                     <div>
                         { paymentStatus? 
@@ -41,7 +44,7 @@ const BuyPlan = () => {
                         </div>
                         :"" }
                     </div>
-                    <button onClick={()=>{Subscribe()}} className="btn btn-primary w-full bg-gradient-to-r from-purple-500 to-indigo-300">Subscribe</button>
+                    <button onClick={()=>{Subscribe()}} className="btn btn-primary w-full bg-gradient-to-r from-purple-900 to-indigo-700 w-full">Subscribe Now</button>
                     </div>
                 </div>
                 </div>

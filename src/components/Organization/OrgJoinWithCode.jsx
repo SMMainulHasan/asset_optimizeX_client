@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 const OrgJoinWithCode = () => {
     const [serverError, setServerError] = useState({});
-    const [serverMsg, setServerMsg] = useState("");
     const Navigate = useNavigate();
 
 
@@ -21,12 +21,12 @@ const OrgJoinWithCode = () => {
         axios.post(`/api/organization/code/`, orgData)
         .then((res)=> {
               if(res.data){
-                setServerMsg("Organization Name changed Successfully")
+                toast.success("You successfully entered in organization.",{autoClose:1500})
+                Navigate(`/app/`)
               }
-            //   setTimeout(() => {
-            //     Navigate(`/app/org/${org_id}`)
-            //     window.location.reload(true);
-            //   }, 1000);
+              setTimeout(() => { 
+                window.location.reload(true);
+              }, 2000);
         })
         .catch((err)=> {setServerError(err.response.data.errors)})
     }
@@ -49,15 +49,6 @@ const OrgJoinWithCode = () => {
                         </label>
                         <input name="invited_code" onChange={handleData} type="text" placeholder="Enter Organization Invite Code" className="w-full input input-bordered" />
                         { serverError.organization_name ? <small className="text-red-600">{serverError.organization_name[0]}</small>:"" }
-                    </div>
-                    
-                    
-                    <div>
-                        { serverMsg && 
-                        <div className="alert alert-success">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <span>{serverMsg}.</span>
-                        </div>}
                     </div>
                     <div>
                         <button onClick={handleSubmit} className="btn btn-block btn-primary bg-gradient-to-r from-purple-700 to-indigo-500">Join Organization As Viewer</button>
