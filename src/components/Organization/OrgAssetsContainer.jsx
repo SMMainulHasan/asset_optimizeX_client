@@ -29,7 +29,7 @@ const OrgAssetsContainer = () => {
             </div>
         </div>
         <div className="indicator ">
-            <Link className="btn text-slate-100 join-item bg-gradient-to-r from-purple-700 to-indigo-500" 
+            <Link className="btn text-slate-100 join-item bg-gradient-to-r border from-slate-700 to-slate-600" 
             to={``} >Search</Link>
             {/* to={`/app/org/${org_id}/library/${library_id}/search/${searchQuery ||undefined}`} >Search</Link> */}
         </div>

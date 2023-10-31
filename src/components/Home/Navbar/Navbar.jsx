@@ -10,7 +10,7 @@ const logout=()=> {
 }
 
   return (
-    <div className="navbar text-gray-100 py-3 bg-gradient-to-r from-purple-700 to-indigo-500">
+    <div className="navbar text-zink-950 py-3 bg-slate-200">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">

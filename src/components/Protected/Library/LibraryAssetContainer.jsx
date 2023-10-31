@@ -22,12 +22,26 @@ const LibraryAssetContainer = () => {
     return extension;
   }
 
-  const isImgExtension =(extension)=>{
+  const isSupportedExtension =(extension)=>{
+    const ext = extension.toLowerCase();
     const imgExt = ["png", "jpg", "webp", "jpeg", "gif", "png", "apng", "svg", "bmp", "bmp", "ico"];
-    if (imgExt.indexOf(extension) != -1){
-      return true;
+    const videoExt = ["mp4", "webm","ogg"];
+    const audioExt = ["mp3", "wav"];
+    const pdfExt = ["pdf"];
+    let res = null;
+    if (imgExt.indexOf(ext) != -1){
+      res = "img";
     }
-    return false;
+    if (videoExt.indexOf(ext) != -1){
+      res = "video";
+    }
+    if (audioExt.indexOf(ext) != -1){
+      res = "audio";
+    }
+    if (pdfExt.indexOf(ext) != -1){
+      res = "pdf";
+    }
+    return res;
   }
 
   return (
@@ -38,8 +52,12 @@ const LibraryAssetContainer = () => {
               <div className="overflow-hidden card card-compact bg-base-100 ">
                 <div className='h-36 flex items-center justify-center'>
                   {
-                    isImgExtension(getFileExtension(asset.asset)) ?
+                    isSupportedExtension(getFileExtension(asset.asset)) == "img" ?
                     <figure><img src={`${asset.asset}`} alt="" /></figure>
+                    : isSupportedExtension(getFileExtension(asset.asset)) == "video" ?
+                    <figure><video controls><source src={`${asset.asset}`} alt="" /></video></figure>
+                    : isSupportedExtension(getFileExtension(asset.asset)) == "audio" ? 
+                    <figure><audio controls><source src={`${asset.asset}`} alt="" /></audio></figure>
                     : <p className='text-center items-center text-4xl text-purple-400'>.{getFileExtension(asset.asset)}</p>
                   }
                 </div>

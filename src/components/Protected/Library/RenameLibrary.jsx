@@ -26,7 +26,7 @@ const RenameLibrary = () => {
               setTimeout(() => {
                 Navigate(`/app/org/${org_id}/library/${library_id}`)
                 window.location.reload(true);
-              }, 1000);
+              }, 2000);
             }
         })
         .catch((err)=> {toast.error(err.response.data.non_field_errors[0], {autoClose: 1000})})

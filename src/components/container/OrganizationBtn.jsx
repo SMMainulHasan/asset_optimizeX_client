@@ -22,7 +22,7 @@ const OrganizationBtn = ({org}) => {
   return (
     <>
         <li >
-            <NavLink className='flex flex-row bg-gradient-to-r from-purple-700 to-indigo-500 place-content-between py-0'  to={`/app/org/${org.id}`}>
+            <NavLink className='flex flex-row place-content-between py-0'  to={`/app/org/${org.id}`}>
                 <div className='flex items-center font-bold'>
                     {/* {
                         org.organization_logo ? <img src={`${org.organization_logo}`}/> : <FaInstalod className='mr-3'/>

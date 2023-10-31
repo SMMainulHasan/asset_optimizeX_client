@@ -111,6 +111,7 @@ const AssetDetails = () => {
             document.body.appendChild(aTag);
             aTag.click();
             aTag.remove();
+            console.log("I am here in download")
         })
     }
     const getFileExtension = (url) =>{
@@ -118,13 +119,27 @@ const AssetDetails = () => {
         return extension;
       }
     
-      const isImgExtension =(extension)=>{
-        const imgExt = ["png", "jpg", "webp", "jpeg", "gif", "png", "apng", "svg", "bmp", "bmp", "ico"];
-        if (imgExt.indexOf(extension) != -1){
-          return true;
-        }
-        return false;
-      }
+    const isSupportedExtension =(extension)=>{
+    const ext = extension.toLowerCase();
+    const imgExt = ["png", "jpg", "webp", "jpeg", "gif", "png", "apng", "svg", "bmp", "bmp", "ico"];
+    const videoExt = ["mp4", "webm","ogg"];
+    const audioExt = ["mp3", "wav"];
+    const pdfExt = ["pdf"];
+    let res = null;
+    if (imgExt.indexOf(ext) != -1){
+        res = "img";
+    }
+    if (videoExt.indexOf(ext) != -1){
+        res = "video";
+    }
+    if (audioExt.indexOf(ext) != -1){
+        res = "audio";
+    }
+    if (pdfExt.indexOf(ext) != -1){
+        res = "pdf";
+    }
+    return res;
+    }
 
   return (
     <div className="relative w-full flex flex-col items-center justify-center mt-5">
@@ -136,9 +151,20 @@ const AssetDetails = () => {
                     {
                         asset?.asset &&
                         (
-                        isImgExtension(getFileExtension(asset.asset)) ?
-                        <img src={`${asset.asset}`} />
-                        : <p className='flex justify-center items-center text-6xl text-purple-400 border rounded-xl bg-slate-200 border-slate-200 h-screen '>.{getFileExtension(asset.asset)}</p>
+                            isSupportedExtension(getFileExtension(asset.asset)) == "img" ?
+                            <figure><img src={`${asset.asset}`} alt="" /></figure>
+                            : isSupportedExtension(getFileExtension(asset.asset)) == "video" ?
+                            <figure><video controls><source src={`${asset.asset}`} alt="" /></video></figure>
+                            : isSupportedExtension(getFileExtension(asset.asset)) == "audio" ? 
+                            <figure><audio controls><source src={`${asset.asset}`} alt="" /></audio></figure>
+                            : isSupportedExtension(getFileExtension(asset.asset)) == "pdf" ? 
+                            <embed 
+                                src={`${asset.asset}`}
+                                height="600px"
+                                width="100%"
+                                type="application/pdf"
+                            ></embed> 
+                            : <p className='text-center items-center text-4xl text-purple-400'>.{getFileExtension(asset.asset)}</p>
                         )
                     }
                     <div className="bg-gray-900 p-3 rounded-3xl bg-opacity-60 absolute text-2xl text-gray-100 top-5 right-5 flex">

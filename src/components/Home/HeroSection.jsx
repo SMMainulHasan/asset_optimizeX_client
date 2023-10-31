@@ -13,7 +13,7 @@ const HeroSection = () => {
         <div className="blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-indigo-600"></div>
     </div>
     <section>
-        <div className="relative pt-36 ml-auto bg-gradient-to-r from-purple-700 to-indigo-500">
+        <div className="relative pt-36 ml-auto bg-gradient-to-b from-slate-400 to-slate-200">
             <div className="lg:w-2/3 text-center mx-auto">
                 <h1 className="text-gray-900 dark:text-white font-bold text-5xl md:text-6xl xl:text-7xl">Frictionless Digital Asset <span className="text-primary dark:text-white">Management.</span></h1>
                 <p className="mt-8 text-gray-700 dark:text-gray-300">Digital asset management (DAM) streamlines the organization, storage, and retrieval of digital resources. It enhances collaboration, ensures version control, and optimizes resource utilization, offering a holistic solution for efficient digital asset handling!</p>

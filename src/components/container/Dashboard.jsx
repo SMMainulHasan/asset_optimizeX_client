@@ -28,7 +28,7 @@ const Dashboard = () => {
       <label htmlFor="my-drawer-2" className="btn btn-primary  drawer-button lg:hidden">Open Drawer</label>
 
       {/* Here gose all of dashboard content */}
-      <div className="bg-base-300 min-h-full min-w-full p-5 " >
+      <div className="bg-slate-300 min-h-full min-w-full p-5 " >
         <Outlet/>
       </div>
 
@@ -36,7 +36,7 @@ const Dashboard = () => {
     </div> 
     <div className="drawer-side">
       <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label> 
-      <ul className="menu p-4 w-80 min-h-full text-base-content  bg-gray-0">
+      <ul className="menu p-4 w-80 min-h-full text-base-content  bg-gray-0 bg-base-100">
         {/* Sidebar content here */}
         <li className='font-semibold'><Link to={"/app/create-org"}><AiOutlineAppstoreAdd/>Create Organization</Link></li>
         {

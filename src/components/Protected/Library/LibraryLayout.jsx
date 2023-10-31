@@ -15,7 +15,7 @@ const LibraryLayout = () => {
   return (
     <>
         <div className='flex mb-5'>
-            <NavLink className="flex-auto text-slate-100 btn btn-wide mr-10 bg-gradient-to-r from-purple-700 to-indigo-500" to={`/app/org/${org_id}/library/${library_id}/add-file`}> <MdAddCard/>Add Assets</NavLink>
+            <NavLink className="flex-auto text-slate-100 btn btn-wide mr-10 bg-gradient-to-r border from-slate-700 to-slate-600" to={`/app/org/${org_id}/library/${library_id}/add-file`}> <MdAddCard/>Add Assets</NavLink>
             <div className=" flex-1 join">
                 <div>
                     <div>
@@ -23,7 +23,7 @@ const LibraryLayout = () => {
                     </div>
                 </div>
                 <div className="indicator ">
-                    <Link className="btn text-slate-100 join-item bg-gradient-to-r from-purple-700 to-indigo-500" to={`/app/org/${org_id}/library/${library_id}/search/${searchQuery ||undefined}`} >Search</Link>
+                    <Link className="btn text-slate-100 join-item bg-gradient-to-r border from-slate-700 to-slate-600" to={`/app/org/${org_id}/library/${library_id}/search/${searchQuery ||undefined}`} >Search</Link>
                 </div>
             </div>
         </div>
