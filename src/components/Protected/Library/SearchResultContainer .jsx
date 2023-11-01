@@ -8,8 +8,7 @@ const SearchResultContainer  = () => {
   useEffect(()=>{
       axios.get(`/api/libraries/${library_id}/assets/?search=${search_query}`)
       .then((res)=> {
-        setSearchResult(res.data)
-        console.log(res.data);
+        setSearchResult(res.data);
         })
   },[search_query]);
 
@@ -30,13 +29,13 @@ const SearchResultContainer  = () => {
     if (imgExt.indexOf(ext) != -1){
       res = "img";
     }
-    if (videoExt.indexOf(ext) != -1){
+    else if (videoExt.indexOf(ext) != -1){
       res = "video";
     }
-    if (audioExt.indexOf(ext) != -1){
+    else if (audioExt.indexOf(ext) != -1){
       res = "audio";
     }
-    if (pdfExt.indexOf(ext) != -1){
+    else if (pdfExt.indexOf(ext) != -1){
       res = "pdf";
     }
     return res;

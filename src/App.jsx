@@ -10,6 +10,7 @@ import HomeLayout from "./components/Home/HomeLayout";
 import BuyPlan from "./components/Organization/BuyPlan";
 import CreateOrganization from "./components/Organization/CreateOrganization";
 import OrgAssetsContainer from "./components/Organization/OrgAssetsContainer";
+import OrgDetail from "./components/Organization/OrgDetail";
 import OrgInviteAccept from "./components/Organization/OrgInviteAccept";
 import OrgJoinWithCode from "./components/Organization/OrgJoinWithCode";
 import OrgSettings from "./components/Organization/OrgSettings";
@@ -82,7 +83,9 @@ if(access_token !== null){
               <Route path="create-library" element={<CreateLibrary/> }/>
               <Route path="rename-org" element={<RenameOrg/> }/>
               <Route path="buy-plan" element={<BuyPlan/> }/>
-              <Route path="org-settings" element={<OrgSettings/> }/>
+              <Route path="org-settings" element={<OrgSettings/> }>
+                <Route path="buy-plan" element={<OrgDetail/> }/>
+              </Route>
 
               <Route path="library/:library_id" element={<LibraryLayout/> }>
                 <Route path="" element={<LibraryAssetContainer/> }/>

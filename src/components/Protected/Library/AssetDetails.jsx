@@ -47,11 +47,7 @@ const AssetDetails = () => {
         axios.patch(`/api/assets/${assetId}/update/`, formData)
         .then((res)=> {
             if(res.data){
-                // console.log(res.data);
-                // toast.success("Updated Successfully.", {
-                //     autoClose: 2000
-                // });
-                navigate(`/app/org/${org_id}/library/${library_id}/`)
+                navigate(-1);
             }
         })
         .catch((err)=> {console.log(err); setServerError(err.response.data)})

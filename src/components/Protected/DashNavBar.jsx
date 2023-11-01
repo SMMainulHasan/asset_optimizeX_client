@@ -9,7 +9,8 @@ import { removeToken } from "../../services/localStorageService";
 
 const DashNavBar = () => {
     const [user,setUser] = useContext(UserContext);
-    const base_url = import.meta.env.VITE_BASE_URL;
+    const BaseUrl = import.meta.env.VITE_BASE_URL;
+    const base_url = BaseUrl.slice(0, -1);
 
     useEffect(()=>{
       axios.get("/api/user/profile/")
@@ -38,7 +39,7 @@ const DashNavBar = () => {
         <div className="dropdown dropdown-end dropdown-hover">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
-              <img src= {`${base_url}/${user.image}`} />
+              <img src= {`${base_url + user.image}`} />
             </div>
           </label>
           <ul tabIndex={0} className="mt-3 z-[1] p-2 text-gray-800 font-semibold shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
