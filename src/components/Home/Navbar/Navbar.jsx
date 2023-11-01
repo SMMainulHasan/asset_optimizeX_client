@@ -10,7 +10,7 @@ const logout=()=> {
 }
 
   return (
-    <div className="navbar text-zink-950 py-3 bg-slate-200">
+    <div className="navbar text-zink-950 py-3 bg-white dark:bg-gray-900">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -33,7 +33,7 @@ const logout=()=> {
             {navbarMenu.map((item, index) => {
               const { name, path} = item;
               return (
-                <li key={index} className="border border-blue-600">
+                <li key={index} className="border  border-blue-600">
                   <Link to={`${path}`}>{name}</Link>
                 </li>
               );
@@ -50,7 +50,7 @@ const logout=()=> {
             const { name, path, children } = item;
             // console.log(children);
             return (
-              <li key={index} tabIndex={0}>
+              <li key={index} tabIndex={0} className="text-2xl font-poppins font-semibold  text-dimWhite">
                 {!children && <Link to={`${path}`}>{name}</Link>}
               </li>
             );

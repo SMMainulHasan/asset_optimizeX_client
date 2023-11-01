@@ -7,7 +7,7 @@ const EmbraceSection = () => {
   const {access_token} = getToken();
 
   return (
-    <section className="py-20">
+    <section className="py-20 ">
       <div className="container mx-auto text-center">
         <h1 className="text-4xl mb-6">
         Discover Asset OptimizeX.<span className="font-bold"> Embrace Asset OptimizeX.</span>

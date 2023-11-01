@@ -22,9 +22,10 @@ const DashNavBar = () => {
         removeToken();
         
     }
+    console.log(user.image)
 
   return (
-    <div className="navbar text-base-100 bg-gray-900">
+    <div className="navbar text-base-100 gray-900">
       <div className="flex-1">
         <a className="btn btn-ghost normal-case text-2xl lg:ms-8" href="/home">
         {/* <span className="font-bold font-roboto text-xl bg-slate-100 p-1 border rounded-xl text-slate-500">AO<span className="text-purple-700">X</span></span> */}
@@ -36,11 +37,12 @@ const DashNavBar = () => {
         </button>
         
         <div className="dropdown dropdown-end dropdown-hover">
+          {/* <img src={user.image} style={{width:'40px', height:'40px'}} alt="" /> */}
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src= {`${base_url}/${user.image}`} />
-            </div>
-          </label>
+  <div className="w-10 rounded-full">
+ <img src={`${user.image}`} alt="" />
+  </div>
+</label>
           <ul tabIndex={0} className="mt-3 z-[1] p-2 text-gray-800 font-semibold shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
             <li><Link to={"/app/profile"}><GrUserSettings/>{user.name}</Link></li>
             <li><Link to={"/app/profile/change-pass"}><PiPasswordFill/>Change Your Password</Link></li>
