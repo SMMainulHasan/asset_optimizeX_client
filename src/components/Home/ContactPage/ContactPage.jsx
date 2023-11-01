@@ -32,11 +32,11 @@ const ContactPage = () => {
 
 
   return (
-    <div className='bg-gradient-to-r from-purple-700 to-indigo-500'  style={{height:'85vh', paddingTop:"30px"}}>
+    <div className='bg-gray-900 min-h-screen flex items-center'  style={{height:'85vh', paddingTop:"30px"}}>
     <div className="">
 
 
-    <section className="container bg-gradient-to-r p-8 rounded-lg  from-cyan-700 to-indigo-300 mx-auto md:px-6" style={{justifyContent:"center"}}>
+    <section className="container bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-transparent mx-auto md:px-6" style={{justifyContent:"center"}}>
       <div className="flex flex-wrap " >
         <div className="mb-10 w-full shrink-0 grow-0 basis-auto md:mb-0 md:w-6/12 md:px-3 lg:px-6">
           <h2 className="mb-6 text-3xl font-bold">Contact assetOptimizeX</h2>
@@ -85,7 +85,7 @@ Fill out the form and one of our experts will reach out to answer your questions
                 id="message"
                 rows="4"
                 onChange={handleData}
-                className="w-full p-2 border rounded focus:ring focus:ring-blue-200"
+                className="w-full p-2 text-gray-900 border rounded focus:ring focus:ring-blue-200"
             />
           </div>
           <button

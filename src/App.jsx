@@ -9,8 +9,8 @@ import ContactPage from "./components/Home/ContactPage/ContactPage";
 import HomeLayout from "./components/Home/HomeLayout";
 import BuyPlan from "./components/Organization/BuyPlan";
 import CreateOrganization from "./components/Organization/CreateOrganization";
+import GiveReview from "./components/Organization/GiveReview";
 import OrgAssetsContainer from "./components/Organization/OrgAssetsContainer";
-import OrgDetail from "./components/Organization/OrgDetail";
 import OrgInviteAccept from "./components/Organization/OrgInviteAccept";
 import OrgJoinWithCode from "./components/Organization/OrgJoinWithCode";
 import OrgSettings from "./components/Organization/OrgSettings";
@@ -27,6 +27,7 @@ import LibraryLayout from "./components/Protected/Library/LibraryLayout";
 import RenameLibrary from "./components/Protected/Library/RenameLibrary";
 import SearchResultContainer from "./components/Protected/Library/SearchResultContainer ";
 import ProfileDetail from "./components/Protected/ProfileDetail";
+import PaymentFailed from "./components/container/PaymentFailed";
 import PaymentSuccess from "./components/container/PaymentSuccess";
 import PrivateOutlet from "./components/container/PrivateOutlet";
 import TopNavAndFooterOutlet from "./components/container/TopNavAndFooterOutlet";
@@ -71,11 +72,13 @@ if(access_token !== null){
         <Route path="/*" element={<PrivateOutlet />}>
           <Route path="app" element={<DashboardLayout title="Dashboard" />}>
             <Route path="" element={<WelcomePage/> }/>
+            <Route path="review" element={<GiveReview/> }/>
             <Route path="join-with-code" element={<OrgJoinWithCode/> }/>
             <Route path="profile" element={<ProfileDetail/> }/>
             <Route path="profile/change-pass" element={<ChangePass/> }/>
             <Route path="create-org" element={<CreateOrganization/> }/>
             <Route path="payment-success" element={<PaymentSuccess />}/>
+            <Route path="payment-failed" element={<PaymentFailed />}/>
 
             <Route path="org/:org_id" element={<OrganizationLayout/> }>
               <Route path="" element={<OrgAssetsContainer/> }/>
@@ -83,9 +86,9 @@ if(access_token !== null){
               <Route path="create-library" element={<CreateLibrary/> }/>
               <Route path="rename-org" element={<RenameOrg/> }/>
               <Route path="buy-plan" element={<BuyPlan/> }/>
-              <Route path="org-settings" element={<OrgSettings/> }>
-                <Route path="buy-plan" element={<OrgDetail/> }/>
-              </Route>
+              <Route path="org-settings" element={<OrgSettings/> }/>
+                
+              
 
               <Route path="library/:library_id" element={<LibraryLayout/> }>
                 <Route path="" element={<LibraryAssetContainer/> }/>

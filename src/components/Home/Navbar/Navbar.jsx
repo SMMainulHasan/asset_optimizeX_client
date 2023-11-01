@@ -10,7 +10,7 @@ const logout=()=> {
 }
 
   return (
-    <div className="navbar text-zink-950 py-3 bg-slate-200">
+    <div className="navbar text-base-100 py-3 bg-gray-900">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -40,7 +40,7 @@ const logout=()=> {
             })}
           </ul>
         </div>
-        <Link className="btn btn-ghost normal-case text-3xl ms-5" to='/home'> 
+        <Link className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-transparent font-extrabold btn btn-ghost normal-case text-3xl ms-5" to='/home'> 
         {/* <span className="font-bold font-roboto text-xl bg-slate-100 p-1 border rounded-xl text-slate-500">AO<span className="text-purple-700">X</span></span> */}
         Asset OptimizeX</Link>
       </div>

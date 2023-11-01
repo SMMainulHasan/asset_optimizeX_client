@@ -7,11 +7,10 @@ import { toast } from "react-toastify";
 
 const OrgSettings = () => {
     const navigate = useNavigate();
-    const {org_id} = useParams()
-    const [activeItem, setActiveItem] = useState('Detail');
+    const {org_id} = useParams();
+
     const [members, setMembers] = useState();
     const [orgDetail, setOrgDetail] = useState();
-    const [date, setDate] = useState()
 
     // Get Organization details
     useEffect(() => {
@@ -38,15 +37,15 @@ const OrgSettings = () => {
     }
 
     //Update Organization info
-    const [serverError, setServerError] = useState({})
+    const [serverError, setServerError] = useState({});
     const [orgLogo, setOrgLogo] = useState();
 
     const handleData = (e)=>{
         setOrgDetail({...orgDetail, [e.target.name]:e.target.value})
-    }
+    };
     const handleOrgLogo = (e)=>{
         setOrgLogo(e.target.files[0])
-    }
+    };
     const handleSubmit = (e)=> {
         e.preventDefault();
         const formData = new FormData();
@@ -69,8 +68,7 @@ const OrgSettings = () => {
               }
         })
         .catch((err)=> {console.log(err); setServerError(err.response.data.errors)})
-    }
-
+    };
 
 
     // get all member 
@@ -79,7 +77,7 @@ const OrgSettings = () => {
         .then(res=> {
             setMembers(res.data)
         })
-    },[org_id])
+    },[org_id]);
 
     const removeMember = (member_id) => {
         axios.delete(`/api/organization/member-remove/${member_id}/`)
@@ -88,7 +86,7 @@ const OrgSettings = () => {
             const updated_members = members.filter(member => member.id !== member_id);
             setMembers(updated_members)
         })
-    }
+    };
 
     // get payment history 
     const [paymentsHistory, setPaymentsHistory] = useState([]);
@@ -98,7 +96,7 @@ const OrgSettings = () => {
             console.log(res.data, "paymentsHistory")
             setPaymentsHistory(res.data)
         })
-    },[org_id])
+    },[org_id]);
 
 
     const deleteOrg = () => {
@@ -108,13 +106,13 @@ const OrgSettings = () => {
             navigate("/app")
             window.location.reload(true);
         })
-    }
+    };
 
+    const [activeItem, setActiveItem] = useState('Detail');
     const handleItemClick = (itemName) => {
         setActiveItem(itemName);
       };
     
-
   return (
     <>
         <div className="tabs font-bold text-red-700">
@@ -124,7 +122,6 @@ const OrgSettings = () => {
             <a className={activeItem == 'Organization Invite'? "tab tab-lifted tab-active": "tab tab-lifted"} onClick={() => handleItemClick('Organization Invite')}>Organization Invite</a>
             <a className={activeItem == 'Delete Organization'? "tab tab-lifted tab-active": "tab tab-lifted"} onClick={() => handleItemClick('Delete Organization')}>Delete Organization</a>
         </div>
-
 
         {
             activeItem == 'Detail'?
@@ -293,7 +290,6 @@ const OrgSettings = () => {
             </div>
             : ""
         }
-        
     </>
   )
 }
