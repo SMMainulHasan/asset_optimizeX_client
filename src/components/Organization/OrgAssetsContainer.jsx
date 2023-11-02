@@ -31,6 +31,7 @@ const OrgAssetsContainer = () => {
       axios.get(`/api/library/asset/${org_id}/?search=${searchQuery}`)
       .then((res)=> {
         setAllAsset(res.data);
+        setTotalAsset(res.data.length);
         return setAssets(res.data)
         })
       return null;
@@ -73,7 +74,8 @@ const OrgAssetsContainer = () => {
         return assetItem
        }
       })
-    return setAssets(filtered);
+      setTotalAsset(filtered.length);
+      return setAssets(filtered);
   }
    const filterVideo  = () => {
     const videoExt = ["mp4", "webm","ogg"];
@@ -83,7 +85,8 @@ const OrgAssetsContainer = () => {
         return assetItem
        }
       })
-    return setAssets(filtered);
+      setTotalAsset(filtered.length);
+      return setAssets(filtered);
   }
    const filterAudio  = () => {
     const audioExt = ["mp3", "wav"];
@@ -93,7 +96,8 @@ const OrgAssetsContainer = () => {
         return assetItem
        }
       })
-    return setAssets(filtered);
+      setTotalAsset(filtered.length);
+      return setAssets(filtered);
   }
   
 

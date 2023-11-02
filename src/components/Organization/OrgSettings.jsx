@@ -75,16 +75,32 @@ const OrgSettings = () => {
     useEffect(() => {
         axios.get(`/api/organization/member/${org_id}/`)
         .then(res=> {
-            setMembers(res.data)
+            setMembers(res.data);
+            console.log(res.data, "members")
         })
     },[org_id]);
 
+    //Remove members
     const removeMember = (member_id) => {
         axios.delete(`/api/organization/member-remove/${member_id}/`)
         .then(res=> {
             toast("1 Member Removed")
             const updated_members = members.filter(member => member.id !== member_id);
             setMembers(updated_members)
+        })
+    };
+
+
+    //Update members
+    const [userRole, setUserRole] = useState();
+    const handleUserRole = (e)=>{
+        setUserRole({...userRole, [e.target.name]:e.target.value});
+    };
+    const updateUserRole = (member_id) => {
+        axios.patch(`/api/organization/permission-edit/${member_id}/`, userRole)
+        .then(res=> {
+            console.log(res, "<<<<<<")
+            toast.success("User Role Updated Successfully.", {autoClose: 1500})
         })
     };
 
@@ -198,11 +214,20 @@ const OrgSettings = () => {
                                         <tr key ={index} className="hover">
                                             <th>{index+1}</th>
                                             <td>{member.email}</td>
-                                            <td>{member.role}</td>
+                                            {/* <td>{member.role}</td> */}
+                                            <td><select name="role" className="select select-bordered" onChange={handleUserRole}>
+                                                <option disabled selected>{member.role}</option>
+                                                <option>Admin</option>
+                                                <option>Contributor</option>
+                                                <option>Consumer</option>
+                                            </select></td>
                                             {
                                                 member.is_company ? <td>Accepted</td> : <td>Pending</td>
                                             }
-                                            <td><button onClick={()=> {removeMember(member.id)}} className="btn btn-sm text-blue-800">Remove</button></td>
+                                            <td>
+                                                <button onClick={()=> {updateUserRole(member.id)}} className="btn btn-sm btn-success mr-3">Update Changes</button>
+                                                <button onClick={()=> {removeMember(member.id)}} className="btn btn-sm btn-error">Remove</button>
+                                            </td>
                                         </tr>
                                     ))
                                 }

@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { BiFolderPlus } from 'react-icons/bi'
 import { BsPersonFillAdd } from 'react-icons/bs'
-import { CgRename } from 'react-icons/cg'
 import { FaCrown } from 'react-icons/fa'
 import { FcSettings } from 'react-icons/fc'
 import { IoMdOptions } from 'react-icons/io'
@@ -41,7 +40,7 @@ const OrganizationBtn = ({org}) => {
                         {
                         (!org.role || org.role=="Admin") ? 
                         <ul tabIndex={0} className="mt-3 z-[1] text-gray-800 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-md w-52 border border-gray-300">
-                            <li><Link to={`/app/org/${org.id}/rename-org`}><CgRename/>Rename</Link></li>
+                            
                             <li><Link to={`/app/org/${org.id}/${org.organization_name}/add-member`}><BsPersonFillAdd/>Add Member</Link></li>
                             <li><Link to={`/app/org/${org.id}/buy-plan`} className='text-yellow-500 text-center border rounded-full bg-gradient-to-r from-purple-700 to-indigo-500'>UPGRADE TO PRO</Link></li>
                         </ul>
@@ -56,7 +55,7 @@ const OrganizationBtn = ({org}) => {
         </li>
         {
             libraries.map((library,index)=>(
-                <LibraryBtn key={index} library={library}/>
+                <LibraryBtn key={index} role={org.role} library={library}/>
             ))
         }
         {

@@ -26,7 +26,7 @@ const UserLogin = () => {
     }
     return (
       <div className="relative flex flex-col items-center justify-center my-8">
-          <div className="w-full p-6 bg-white rounded-md shadow-lg border-top lg:max-w-lg">
+          <div className="w-full p-6 bg-white rounded-md shadow-lg border-top lg:max-w-lg h-screen">
               <h1 className="text-3xl font-semibold text-center text-gray-700">Asset OptimizeX</h1>
               
               <form className="space-y-4">

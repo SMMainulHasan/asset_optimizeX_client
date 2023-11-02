@@ -8,7 +8,7 @@ import { SlOptionsVertical } from 'react-icons/sl'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
-const LibraryBtn = ({library}) => {
+const LibraryBtn = ({library, role}) => {
   const deleteLibrary = (lib_id)=> {
     axios.delete(`/api/library/delete/${lib_id}/`)
     .then((res)=> {
@@ -34,10 +34,13 @@ const LibraryBtn = ({library}) => {
               <label tabIndex={0} className="btn btn-ghost">
                 <Link><SlOptionsVertical/></Link>
               </label>
+              {
+              (!role || role=="Admin") ?
               <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-md w-52 border border-gray-300">
                 <li><Link to={`/app/org/${library.org_id}/library/${library.id}/rename-lib`}><CgRename/>Rename</Link></li>
                 <li><Link  onClick={()=>{deleteLibrary(library.id)}} className='text-red-500'><MdDelete/>Delete</Link></li>
-              </ul>
+              </ul>:""
+              }
             </div>
           </Link>
         </li>
