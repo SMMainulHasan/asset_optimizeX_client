@@ -148,11 +148,11 @@ const AssetDetails = () => {
                         asset?.asset &&
                         (
                             isSupportedExtension(getFileExtension(asset.asset)) == "img" ?
-                            <figure><img src={`${asset.asset}`} alt="" /></figure>
+                            <figure><img className="w-full" src={`${asset.asset}`} alt="" /></figure>
                             : isSupportedExtension(getFileExtension(asset.asset)) == "video" ?
                             <figure><video controls><source src={`${asset.asset}`} alt="" /></video></figure>
                             : isSupportedExtension(getFileExtension(asset.asset)) == "audio" ? 
-                            <figure><audio controls><source src={`${asset.asset}`} alt="" /></audio></figure>
+                            <figure><br /> <br /> <br /><br /><audio className="w-full" controls><source src={`${asset.asset}`} alt="" /></audio></figure>
                             : isSupportedExtension(getFileExtension(asset.asset)) == "pdf" ? 
                             <embed 
                                 src={`${asset.asset}`}
@@ -242,7 +242,7 @@ const AssetDetails = () => {
                                         <li key={oldAsset.id}>
                                             <div className="flex items-center">
                                             <p>{ShowDateTime(oldAsset?.created_at)}</p>
-                                            <button onClick={()=> {downloadFileUrl(oldAsset.asset)}} className="btn-xs hover:text-gray-400"><HiDownload className="text-xl"/></button>
+                                            <a download href={oldAsset.asset}className="btn-xs hover:text-gray-400"><HiDownload className="text-xl"/></a>
                                             </div>
                                         </li>
                                     )) : <li>Don&apos;t have any old versions.</li>

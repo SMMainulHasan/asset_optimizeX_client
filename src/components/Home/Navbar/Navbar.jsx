@@ -29,35 +29,56 @@ const logout=()=> {
               />
             </svg>
           </label>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          <ul tabIndex={0} className="bg-gray-600 menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
             {navbarMenu.map((item, index) => {
               const { name, path} = item;
               return (
-                <li key={index} className="border border-blue-600">
+                <li key={index} className="">
                   <Link to={`${path}`}>{name}</Link>
                 </li>
               );
             })}
+            {
+              access_token ? <a className="btn btn-outline text-slate-100 rounded-full text-base-100" href="/app">Your Assets</a>
+              : <a className="btn btn-outline text-slate-100 rounded-full text-base-100" href="/user/login">Log In</a>
+            }
+            {
+              access_token ? <a onClick={logout} className="btn btn-primary rounded-full  text-base-100" href="/home">Log Out</a>
+              : <a  className="btn btn-primary rounded-full text-base-100" href="/user/register">Get Started</a>
+            }
           </ul>
+          
         </div>
         <Link className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-transparent font-extrabold btn btn-ghost normal-case text-3xl ms-5" to='/home'> 
         {/* <span className="font-bold font-roboto text-xl bg-slate-100 p-1 border rounded-xl text-slate-500">AO<span className="text-purple-700">X</span></span> */}
         Asset OptimizeX</Link>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal px-1 z-10">
           {navbarMenu.map((item, index) => {
             const { name, path, children } = item;
             // console.log(children);
             return (
-              <li key={index} tabIndex={0}>
+              <li className=" mt-1" key={index} tabIndex={0}>
                 {!children && <Link to={`${path}`}>{name}</Link>}
               </li>
             );
           })}
+          <div className="ml-5 mr-10">
+            {
+              access_token ? <a className="mr-5 btn btn-outline text-slate-100 rounded-full text-base-100" href="/app">Your Assets</a>
+              : <a className="mr-5 btn btn-outline text-slate-100 rounded-full text-base-100" href="/user/login">Log In</a>
+            }
+            {
+              access_token ? <a onClick={logout} className="btn btn-primary rounded-full  text-base-100" href="/home">Log Out</a>
+              : <a  className="btn btn-primary rounded-full text-base-100" href="/user/register">Get Started</a>
+            }
+          </div>
         </ul>
+        
+        
       </div>
-      <div className="navbar-end gap-x-3 pr-5">
+      {/* <div className="navbar-end gap-x-3 pr-5">
         {
           access_token ? <a className="btn btn-outline text-slate-100 rounded-full text-base-100" href="/app">Your Assets</a>
           : <a className="btn btn-outline text-slate-100 rounded-full text-base-100" href="/user/login">Log In</a>
@@ -67,7 +88,7 @@ const logout=()=> {
           : <a  className="btn btn-primary rounded-full text-base-100" href="/user/register">Get Started</a>
         }
         
-      </div>
+      </div> */}
     </div>
   );
 };
